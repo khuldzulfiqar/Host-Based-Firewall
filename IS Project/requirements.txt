@@ -1,0 +1,7 @@
+# Core dependencies for the enhanced host-based firewall
+pydivert==2.1.0
+psutil>=5.9.0
+pyyaml>=6.0.1
+
+# Optional dependencies (for advanced features)
+# yaml>=6.0.1  # Already included above
