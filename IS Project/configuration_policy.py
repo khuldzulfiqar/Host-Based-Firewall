@@ -208,7 +208,8 @@ class PolicyManager:
         base_dir = os.path.dirname(__file__)
         self.policy_file = os.path.join(base_dir, policy_file)
         self.policies: List[Policy] = []
-        self.policy_lock = threading.Lock()
+        # Use re-entrant lock to avoid deadlock when save is called from within an update
+        self.policy_lock = threading.RLock()
         
         # Load policies
         self.load_policies()
@@ -547,7 +548,7 @@ class ConfigurationGUI:
         
         for policy in self.policy_manager.policies:
             actions_str = ', '.join([action.value for action in policy.actions])
-            self.policies_tree.insert('', 'end', values=(
+            self.policies_tree.insert('', 'end', iid=policy.id, values=(
                 policy.name,
                 policy.policy_type.value,
                 'Yes' if policy.enabled else 'No',
@@ -557,18 +558,289 @@ class ConfigurationGUI:
     
     def _add_policy(self):
         """Add new policy"""
-        # Implementation for adding policy dialog
-        pass
+        def open_add_dialog():
+            dialog = tk.Toplevel(self.parent)
+            dialog.title("Add Policy")
+            dialog.transient(self.parent)
+            dialog.resizable(False, False)
+            dialog.grab_set()
+
+            # Fields (grid layout)
+            frm = ttk.LabelFrame(dialog, text="Policy Details")
+            frm.pack(fill=tk.BOTH, expand=True, padx=12, pady=12)
+
+            # Name
+            ttk.Label(frm, text="Name:").grid(row=0, column=0, sticky=tk.W, padx=6, pady=6)
+            name_var = tk.StringVar()
+            ttk.Entry(frm, textvariable=name_var, width=42).grid(row=0, column=1, sticky=tk.EW, padx=6, pady=6)
+
+            # Type
+            ttk.Label(frm, text="Type:").grid(row=1, column=0, sticky=tk.W, padx=6, pady=6)
+            type_var = tk.StringVar(value=PolicyType.SECURITY.value)
+            ttk.Combobox(frm, textvariable=type_var, values=[t.value for t in PolicyType], state='readonly').grid(row=1, column=1, sticky=tk.EW, padx=6, pady=6)
+
+            # Enabled
+            ttk.Label(frm, text="Enabled:").grid(row=2, column=0, sticky=tk.W, padx=6, pady=6)
+            enabled_var = tk.BooleanVar(value=True)
+            ttk.Checkbutton(frm, variable=enabled_var, text="Enabled").grid(row=2, column=1, sticky=tk.W, padx=6, pady=6)
+
+            # Priority
+            ttk.Label(frm, text="Priority:").grid(row=3, column=0, sticky=tk.W, padx=6, pady=6)
+            priority_var = tk.StringVar(value="100")
+            ttk.Entry(frm, textvariable=priority_var, width=12).grid(row=3, column=1, sticky=tk.W, padx=6, pady=6)
+
+            # Actions
+            ttk.Label(frm, text="Actions (comma):").grid(row=4, column=0, sticky=tk.W, padx=6, pady=6)
+            actions_var = tk.StringVar(value="DENY,ALERT")
+            ttk.Entry(frm, textvariable=actions_var, width=42).grid(row=4, column=1, sticky=tk.EW, padx=6, pady=6)
+
+            # Description
+            ttk.Label(frm, text="Description:").grid(row=5, column=0, sticky=tk.NW, padx=6, pady=6)
+            desc_text = tk.Text(frm, height=3, width=50)
+            desc_text.grid(row=5, column=1, sticky=tk.EW, padx=6, pady=6)
+
+            # Rules
+            ttk.Label(frm, text="Rules (JSON list):").grid(row=6, column=0, sticky=tk.NW, padx=6, pady=6)
+            rules_text = tk.Text(frm, height=4, width=50)
+            rules_text.grid(row=6, column=1, sticky=tk.EW, padx=6, pady=6)
+
+            # Conditions
+            ttk.Label(frm, text="Conditions (JSON list):").grid(row=7, column=0, sticky=tk.NW, padx=6, pady=6)
+            conds_text = tk.Text(frm, height=4, width=50)
+            conds_text.grid(row=7, column=1, sticky=tk.EW, padx=6, pady=6)
+
+            frm.columnconfigure(1, weight=1)
+
+            # Buttons
+            btns = ttk.Frame(dialog)
+            btns.pack(fill=tk.X, padx=12, pady=10)
+            def on_cancel():
+                dialog.destroy()
+            def on_save():
+                try:
+                    name = name_var.get().strip()
+                    if not name:
+                        messagebox.showerror("Validation", "Name is required.")
+                        return
+                    try:
+                        priority = int(priority_var.get().strip())
+                    except ValueError:
+                        messagebox.showerror("Validation", "Priority must be an integer.")
+                        return
+
+                    # Parse actions
+                    actions_raw = [a.strip().upper() for a in actions_var.get().split(',') if a.strip()]
+                    actions = []
+                    for a in actions_raw:
+                        if a not in [pa.value for pa in PolicyAction]:
+                            messagebox.showerror("Validation", f"Invalid action: {a}")
+                            return
+                        actions.append(PolicyAction(a))
+
+                    # Parse JSON fields
+                    def parse_json_from(text_widget, field_name):
+                        raw = text_widget.get('1.0', tk.END).strip()
+                        if not raw:
+                            return []
+                        try:
+                            data = json.loads(raw)
+                        except Exception as e:
+                            messagebox.showerror("Validation", f"{field_name} must be valid JSON list.\n{e}")
+                            return None
+                        if not isinstance(data, list):
+                            messagebox.showerror("Validation", f"{field_name} must be a JSON list.")
+                            return None
+                        return data
+
+                    rules = parse_json_from(rules_text, "Rules")
+                    if rules is None:
+                        return
+                    conditions = parse_json_from(conds_text, "Conditions")
+                    if conditions is None:
+                        return
+
+                    description = desc_text.get('1.0', tk.END).strip()
+
+                    policy_id = f"{name.lower().replace(' ', '_')}_{int(datetime.now().timestamp())}"
+                    policy = Policy(
+                        id=policy_id,
+                        name=name,
+                        policy_type=PolicyType(type_var.get()),
+                        description=description,
+                        rules=rules,
+                        conditions=conditions,
+                        actions=actions,
+                        priority=priority,
+                        enabled=enabled_var.get(),
+                        created_at=datetime.now(),
+                        updated_at=datetime.now()
+                    )
+
+                    if self.policy_manager.add_policy(policy):
+                        self._refresh_policies()
+                        messagebox.showinfo("Policies", "Policy added successfully.")
+                        dialog.destroy()
+                    else:
+                        messagebox.showerror("Policies", "Failed to add policy. Check console for details.")
+                except Exception as e:
+                    messagebox.showerror("Policies", f"Error adding policy:\n{e}")
+
+            ttk.Button(btns, text="Cancel", command=on_cancel).pack(side=tk.RIGHT, padx=6)
+            ttk.Button(btns, text="Save", command=on_save).pack(side=tk.RIGHT, padx=6)
+
+        self.parent.after(0, open_add_dialog)
     
     def _edit_policy(self):
         """Edit selected policy"""
-        # Implementation for editing policy dialog
-        pass
+        selection = self.policies_tree.selection()
+        if not selection:
+            messagebox.showwarning("Policies", "Please select a policy to edit.")
+            return
+        policy_id = selection[0]
+        policy = self.policy_manager.get_policy(policy_id)
+        if not policy:
+            messagebox.showerror("Policies", "Selected policy could not be found.")
+            return
+
+        def open_edit_dialog():
+            dialog = tk.Toplevel(self.parent)
+            dialog.title("Edit Policy")
+            dialog.transient(self.parent)
+            dialog.resizable(False, False)
+            dialog.grab_set()
+
+            frm = ttk.LabelFrame(dialog, text="Policy Details")
+            frm.pack(fill=tk.BOTH, expand=True, padx=12, pady=12)
+
+            ttk.Label(frm, text="Name:").grid(row=0, column=0, sticky=tk.W, padx=6, pady=6)
+            name_var = tk.StringVar(value=policy.name)
+            ttk.Entry(frm, textvariable=name_var, width=42).grid(row=0, column=1, sticky=tk.EW, padx=6, pady=6)
+
+            ttk.Label(frm, text="Type:").grid(row=1, column=0, sticky=tk.W, padx=6, pady=6)
+            type_var = tk.StringVar(value=policy.policy_type.value)
+            ttk.Combobox(frm, textvariable=type_var, values=[t.value for t in PolicyType], state='readonly').grid(row=1, column=1, sticky=tk.EW, padx=6, pady=6)
+
+            ttk.Label(frm, text="Enabled:").grid(row=2, column=0, sticky=tk.W, padx=6, pady=6)
+            enabled_var = tk.BooleanVar(value=policy.enabled)
+            ttk.Checkbutton(frm, variable=enabled_var, text="Enabled").grid(row=2, column=1, sticky=tk.W, padx=6, pady=6)
+
+            ttk.Label(frm, text="Priority:").grid(row=3, column=0, sticky=tk.W, padx=6, pady=6)
+            priority_var = tk.StringVar(value=str(policy.priority))
+            ttk.Entry(frm, textvariable=priority_var, width=12).grid(row=3, column=1, sticky=tk.W, padx=6, pady=6)
+
+            ttk.Label(frm, text="Actions (comma):").grid(row=4, column=0, sticky=tk.W, padx=6, pady=6)
+            actions_var = tk.StringVar(value=",".join([a.value for a in policy.actions]))
+            ttk.Entry(frm, textvariable=actions_var, width=42).grid(row=4, column=1, sticky=tk.EW, padx=6, pady=6)
+
+            ttk.Label(frm, text="Description:").grid(row=5, column=0, sticky=tk.NW, padx=6, pady=6)
+            desc_text = tk.Text(frm, height=3, width=50)
+            desc_text.insert(tk.END, policy.description)
+            desc_text.grid(row=5, column=1, sticky=tk.EW, padx=6, pady=6)
+
+            ttk.Label(frm, text="Rules (JSON list):").grid(row=6, column=0, sticky=tk.NW, padx=6, pady=6)
+            rules_text = tk.Text(frm, height=4, width=50)
+            rules_text.insert(tk.END, json.dumps(policy.rules, indent=2))
+            rules_text.grid(row=6, column=1, sticky=tk.EW, padx=6, pady=6)
+
+            ttk.Label(frm, text="Conditions (JSON list):").grid(row=7, column=0, sticky=tk.NW, padx=6, pady=6)
+            conds_text = tk.Text(frm, height=4, width=50)
+            conds_text.insert(tk.END, json.dumps(policy.conditions, indent=2))
+            conds_text.grid(row=7, column=1, sticky=tk.EW, padx=6, pady=6)
+
+            frm.columnconfigure(1, weight=1)
+
+            btns = ttk.Frame(dialog)
+            btns.pack(fill=tk.X, padx=12, pady=10)
+
+            def on_cancel():
+                dialog.destroy()
+
+            def on_save():
+                try:
+                    name = name_var.get().strip()
+                    if not name:
+                        messagebox.showerror("Validation", "Name is required.")
+                        return
+                    try:
+                        priority = int(priority_var.get().strip())
+                    except ValueError:
+                        messagebox.showerror("Validation", "Priority must be an integer.")
+                        return
+
+                    actions_raw = [a.strip().upper() for a in actions_var.get().split(',') if a.strip()]
+                    actions = []
+                    for a in actions_raw:
+                        if a not in [pa.value for pa in PolicyAction]:
+                            messagebox.showerror("Validation", f"Invalid action: {a}")
+                            return
+                        actions.append(PolicyAction(a))
+
+                    def parse_json_from(text_widget, field_name):
+                        raw = text_widget.get('1.0', tk.END).strip()
+                        if not raw:
+                            return []
+                        try:
+                            data = json.loads(raw)
+                        except Exception as e:
+                            messagebox.showerror("Validation", f"{field_name} must be valid JSON list.\n{e}")
+                            return None
+                        if not isinstance(data, list):
+                            messagebox.showerror("Validation", f"{field_name} must be a JSON list.")
+                            return None
+                        return data
+
+                    rules = parse_json_from(rules_text, "Rules")
+                    if rules is None:
+                        return
+                    conditions = parse_json_from(conds_text, "Conditions")
+                    if conditions is None:
+                        return
+
+                    updates = {
+                        'name': name,
+                        'policy_type': PolicyType(type_var.get()),
+                        'enabled': enabled_var.get(),
+                        'priority': priority,
+                        'actions': actions,
+                        'description': desc_text.get('1.0', tk.END).strip(),
+                        'rules': rules,
+                        'conditions': conditions
+                    }
+
+                    if self.policy_manager.update_policy(policy_id, **updates):
+                        self._refresh_policies()
+                        messagebox.showinfo("Policies", "Policy updated successfully.")
+                        dialog.destroy()
+                    else:
+                        messagebox.showerror("Policies", "Failed to update policy. Check console for details.")
+                except Exception as e:
+                    messagebox.showerror("Policies", f"Error updating policy:\n{e}")
+
+            ttk.Button(btns, text="Cancel", command=on_cancel).pack(side=tk.RIGHT, padx=6)
+            ttk.Button(btns, text="Save", command=on_save).pack(side=tk.RIGHT, padx=6)
+
+        self.parent.after(0, open_edit_dialog)
     
     def _delete_policy(self):
         """Delete selected policy"""
-        # Implementation for deleting policy
-        pass
+        selection = self.policies_tree.selection()
+        if not selection:
+            messagebox.showwarning("Policies", "Please select a policy to delete.")
+            return
+        policy_id = selection[0]
+        policy = self.policy_manager.get_policy(policy_id)
+        if not policy:
+            messagebox.showerror("Policies", "Selected policy could not be found.")
+            return
+
+        if not messagebox.askyesno("Delete Policy", f"Are you sure you want to delete '{policy.name}'?"):
+            return
+
+        if self.policy_manager.remove_policy(policy_id):
+            self._refresh_policies()
+            messagebox.showinfo("Policies", "Policy deleted.")
+        else:
+            messagebox.showerror("Policies", "Failed to delete policy. Check console for details.")
     
     def save_configuration(self):
         """Save all configuration changes"""

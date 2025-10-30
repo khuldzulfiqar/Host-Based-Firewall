@@ -104,6 +104,8 @@ class EnhancedFirewall:
             # Install security hardening inbound deny rules if enabled
             if getattr(cfg, 'enable_hardening_rules', True):
                 self._install_hardening_rules()
+            # Apply configuration-driven network/port controls
+            self._apply_config_rules(cfg)
         except Exception as e:
             self.log_callback(f"Rule setup error: {e}")
         
@@ -258,6 +260,80 @@ class EnhancedFirewall:
                 description="Demo: Block outbound HTTP so you can verify blocking"
             ))
 
+    def _apply_config_rules(self, cfg):
+        """Translate configuration settings into enforcement rules."""
+        try:
+            existing_ids = {r.id for r in self.rule_engine.get_all_rules()}
+
+            # Trusted networks: allow both directions
+            for net in getattr(cfg, 'trusted_networks', []) or []:
+                rid = f"cfg_allow_trusted_{net.replace('/', '_')}"
+                if rid in existing_ids:
+                    continue
+                self.rule_engine.add_rule(FirewallRule(
+                    id=rid,
+                    name=f"Allow trusted {net}",
+                    action=RuleAction.ALLOW,
+                    direction=RuleDirection.BOTH,
+                    protocol=Protocol.ANY,
+                    src_ip=net,
+                    dst_ip=net,
+                    priority=15,
+                    description="Config: allow trusted network"
+                ))
+
+            # Blocked networks: deny both directions
+            for net in getattr(cfg, 'blocked_networks', []) or []:
+                rid = f"cfg_block_net_{net.replace('/', '_')}"
+                if rid in existing_ids:
+                    continue
+                self.rule_engine.add_rule(FirewallRule(
+                    id=rid,
+                    name=f"Block network {net}",
+                    action=RuleAction.DENY,
+                    direction=RuleDirection.BOTH,
+                    protocol=Protocol.ANY,
+                    src_ip=net,
+                    dst_ip=net,
+                    priority=14,
+                    description="Config: block network"
+                ))
+
+            # Allowed ports (outbound allow)
+            for port in getattr(cfg, 'allowed_ports', []) or []:
+                rid = f"cfg_allow_out_port_{port}"
+                if rid in existing_ids:
+                    continue
+                self.rule_engine.add_rule(FirewallRule(
+                    id=rid,
+                    name=f"Allow outbound port {port}",
+                    action=RuleAction.ALLOW,
+                    direction=RuleDirection.OUTBOUND,
+                    protocol=Protocol.ANY,
+                    dst_port=port,
+                    priority=16,
+                    description="Config: allowed outbound port"
+                ))
+
+            # Blocked ports (deny both directions)
+            for port in getattr(cfg, 'blocked_ports', []) or []:
+                rid = f"cfg_block_port_{port}"
+                if rid in existing_ids:
+                    continue
+                self.rule_engine.add_rule(FirewallRule(
+                    id=rid,
+                    name=f"Block port {port}",
+                    action=RuleAction.DENY,
+                    direction=RuleDirection.BOTH,
+                    protocol=Protocol.ANY,
+                    dst_port=port,
+                    priority=13,
+                    description="Config: blocked port"
+                ))
+
+        except Exception as e:
+            self.log_callback(f"Apply config rules error: {e}")
+
     def stop(self):
         """Stop the enhanced firewall"""
         self.running = False
@@ -280,6 +356,44 @@ class EnhancedFirewall:
             message="Enhanced Firewall stopped"
         ))
 
+    def reload_configuration(self) -> bool:
+        """Live-reload configuration and policies and re-apply config-driven rules."""
+        try:
+            # Reload from files
+            cfg_ok = self.config_manager.load_configuration()
+            pol_ok = self.policy_manager.load_policies()
+
+            # Apply default action immediately
+            try:
+                cfg = self.config_manager.get_config()
+                if str(cfg.default_action).upper() == "DENY":
+                    self.rule_engine.set_default_action(RuleAction.DENY)
+                else:
+                    self.rule_engine.set_default_action(RuleAction.ALLOW)
+            except Exception as e:
+                self.log_callback(f"Config default_action reload error: {e}")
+
+            # Remove prior config-derived rules (prefix cfg_)
+            existing = self.rule_engine.get_all_rules()
+            for r in list(existing):
+                try:
+                    if r.id and r.id.startswith("cfg_"):
+                        self.rule_engine.remove_rule(r.id)
+                except Exception:
+                    pass
+
+            # Re-apply config rules
+            try:
+                self._apply_config_rules(self.config_manager.get_config())
+            except Exception as e:
+                self.log_callback(f"Config rules reload error: {e}")
+
+            self.log_callback("Configuration and policies reloaded live.")
+            return bool(cfg_ok and pol_ok)
+        except Exception as e:
+            self.log_callback(f"Reload error: {e}")
+            return False
+
     def process_packet(self, packet_info: PacketInfo) -> tuple[bool, dict]:
         """Process a packet through rules, stateful inspection, and policy."""
         try:
@@ -297,10 +411,19 @@ class EnhancedFirewall:
             # Policy evaluation (optional)
             policy_actions = self.policy_manager.evaluate_policies(packet_info)
 
-            # Final decision
+            # Apply policy actions influence
+            policy_forced_allow = any(a.name == 'ALLOW' for a in policy_actions)
+            policy_forced_deny = any(a.name == 'DENY' or a.name == 'QUARANTINE' for a in policy_actions)
+            policy_alert = any(a.name == 'ALERT' for a in policy_actions)
+            policy_log = any(a.name == 'LOG' for a in policy_actions)
+
+            # Final decision precedence: explicit rule > policy forced decision > stateful > default
             if matching_rule:
                 final_decision = rule_allow
                 decision_source = 'rule'
+            elif policy_forced_deny or policy_forced_allow:
+                final_decision = not policy_forced_deny
+                decision_source = 'policy'
             elif connection_state is not None:
                 final_decision = stateful_allow
                 decision_source = 'stateful'
@@ -316,6 +439,7 @@ class EnhancedFirewall:
                 'default_action': self.rule_engine.default_action.value if decision_source == 'default' else None,
                 'connection_state': connection_state.value if connection_state else None,
                 'decision_source': decision_source,
+                'policy_actions': [a.value for a in policy_actions] if policy_actions else [],
             }
 
             # Log packet
@@ -329,6 +453,13 @@ class EnhancedFirewall:
                 if match_info.get('rule_name') or match_info.get('connection_state'):
                     reason_text += f" ({match_info.get('rule_name') or match_info.get('connection_state')})"
                 self.logger.log_packet_blocked(packet_info.src_ip, packet_info.dst_ip, packet_info.protocol, reason=reason_text)
+
+            # Side-effect logs for policy actions
+            if policy_alert or policy_log or policy_forced_deny or policy_forced_allow:
+                action_text = ','.join([a.value for a in policy_actions])
+                self.logger.log_security_event(f"Policy actions [{action_text}] on packet {packet_info.src_ip} -> {packet_info.dst_ip} {packet_info.protocol}")
+                if policy_forced_deny or any(a.name == 'QUARANTINE' for a in policy_actions):
+                    self.logger.log_security_alert(f"Packet quarantined/denied by policy from {packet_info.src_ip} to {packet_info.dst_ip}")
 
             return final_decision, match_info
 
@@ -505,6 +636,20 @@ class EnhancedFirewallGUI:
         self.config_gui = ConfigurationGUI(config_frame, 
                                          self.firewall.config_manager, 
                                          self.firewall.policy_manager)
+
+        # Live reload controls
+        reload_frame = ttk.Frame(config_frame)
+        reload_frame.pack(fill=tk.X, padx=10, pady=6)
+        ttk.Button(reload_frame, text="Apply Config/Policies (Live)", command=self.reload_firewall_config).pack(side=tk.LEFT, padx=5)
+        ttk.Label(reload_frame, text="Applies without restarting the firewall").pack(side=tk.LEFT, padx=5)
+
+    def reload_firewall_config(self):
+        """Trigger live reload of firewall configuration and policies."""
+        ok = self.firewall.reload_configuration()
+        if ok:
+            messagebox.showinfo("Reload", "Configuration and policies reloaded successfully.")
+        else:
+            messagebox.showwarning("Reload", "Reload completed with issues. Check logs for details.")
 
     def log_message(self, message):
         """Log message to activity log"""
