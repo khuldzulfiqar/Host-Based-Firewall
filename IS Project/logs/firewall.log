@@ -54,3 +54,782 @@
 2025-10-30 20:21:00,103 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
 2025-10-30 20:21:01,008 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
 2025-10-30 20:21:01,008 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:39,646 - firewall - INFO - Enhanced Firewall started successfully
+2025-10-30 22:25:39,949 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:39,949 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:40,452 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:40,452 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:40,452 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:40,452 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:40,452 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:40,553 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:40,553 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:40,553 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:40,553 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:40,553 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:40,553 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:40,553 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:40,554 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:40,554 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:40,654 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:40,655 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:40,655 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:40,655 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:40,856 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:40,957 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:40,957 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:40,957 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:40,957 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:40,957 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:40,958 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:40,958 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,058 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,059 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,059 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,059 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,059 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,059 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,059 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,059 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,059 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,160 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,160 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,160 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,160 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,160 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,160 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,160 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,160 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,261 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,262 - firewall - INFO - Packet allowed: 157.240.227.61 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=157.240.227.61 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,262 - firewall - INFO - Packet allowed: 157.240.227.61 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=157.240.227.61 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,262 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,262 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,262 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:41,262 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:41,262 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,262 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,363 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,363 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,363 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:41,363 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:41,363 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:41,363 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:41,363 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:41,363 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:41,464 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:41,464 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:41,464 - firewall - INFO - Packet allowed: 192.168.0.73 -> 157.240.227.61 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=157.240.227.61 | proto=TCP
+2025-10-30 22:25:41,464 - firewall - INFO - Packet allowed: 192.168.0.73 -> 157.240.227.61 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=157.240.227.61 | proto=TCP
+2025-10-30 22:25:41,464 - firewall - INFO - Packet allowed: 192.168.0.73 -> 157.240.227.61 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=157.240.227.61 | proto=TCP
+2025-10-30 22:25:41,465 - firewall - INFO - Packet allowed: 192.168.0.73 -> 157.240.227.61 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=157.240.227.61 | proto=TCP
+2025-10-30 22:25:41,465 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:41,465 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:41,565 - firewall - INFO - Packet allowed: 157.240.227.61 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=157.240.227.61 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,566 - firewall - INFO - Packet allowed: 157.240.227.61 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=157.240.227.61 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,566 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:41,566 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:41,566 - firewall - INFO - Packet allowed: 157.240.227.61 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=157.240.227.61 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,566 - firewall - INFO - Packet allowed: 157.240.227.61 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=157.240.227.61 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,566 - firewall - INFO - Packet allowed: 192.168.0.73 -> 157.240.227.61 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=157.240.227.61 | proto=TCP
+2025-10-30 22:25:41,567 - firewall - INFO - Packet allowed: 192.168.0.73 -> 157.240.227.61 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=157.240.227.61 | proto=TCP
+2025-10-30 22:25:41,668 - firewall - INFO - Packet allowed: 157.240.227.61 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=157.240.227.61 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,668 - firewall - INFO - Packet allowed: 157.240.227.61 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=157.240.227.61 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,668 - firewall - INFO - Packet allowed: 192.168.0.73 -> 157.240.227.61 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=157.240.227.61 | proto=TCP
+2025-10-30 22:25:41,668 - firewall - INFO - Packet allowed: 192.168.0.73 -> 157.240.227.61 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=157.240.227.61 | proto=TCP
+2025-10-30 22:25:41,668 - firewall - INFO - Packet allowed: 157.240.227.61 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=157.240.227.61 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,668 - firewall - INFO - Packet allowed: 157.240.227.61 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=157.240.227.61 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,668 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,668 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,769 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,769 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,769 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,769 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,769 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:41,769 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:41,770 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,770 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,870 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,870 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,870 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,870 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,871 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,871 - firewall - INFO - Packet allowed: 52.21.252.32 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.21.252.32 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,871 - firewall - INFO - Packet allowed: 157.240.227.61 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=157.240.227.61 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,871 - firewall - INFO - Packet allowed: 157.240.227.61 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=157.240.227.61 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:41,971 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:41,971 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:41,971 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:41,971 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:41,972 - firewall - INFO - Packet allowed: 192.168.0.73 -> 192.168.0.1 (UDP) - reason=Allow DNS UDP 53 | src=192.168.0.73 | dst=192.168.0.1 | proto=UDP
+2025-10-30 22:25:41,972 - firewall - INFO - Packet allowed: 192.168.0.73 -> 192.168.0.1 (UDP) - reason=Allow DNS UDP 53 | src=192.168.0.73 | dst=192.168.0.1 | proto=UDP
+2025-10-30 22:25:41,972 - firewall - INFO - Packet allowed: 192.168.0.73 -> 192.168.0.1 (UDP) - reason=Allow DNS UDP 53 | src=192.168.0.73 | dst=192.168.0.1 | proto=UDP
+2025-10-30 22:25:41,972 - firewall - INFO - Packet allowed: 192.168.0.73 -> 192.168.0.1 (UDP) - reason=Allow DNS UDP 53 | src=192.168.0.73 | dst=192.168.0.1 | proto=UDP
+2025-10-30 22:25:42,072 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:42,072 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.21.252.32 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.21.252.32 | proto=TCP
+2025-10-30 22:25:42,072 - firewall - INFO - Packet allowed: 192.168.0.73 -> 157.240.227.61 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=157.240.227.61 | proto=TCP
+2025-10-30 22:25:42,073 - firewall - INFO - Packet allowed: 192.168.0.73 -> 157.240.227.61 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=157.240.227.61 | proto=TCP
+2025-10-30 22:25:42,073 - firewall - INFO - Packet allowed: 192.168.0.1 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=192.168.0.1 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:25:42,073 - firewall - INFO - Packet allowed: 192.168.0.1 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=192.168.0.1 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:25:42,073 - firewall - INFO - Packet allowed: 192.168.0.1 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=192.168.0.1 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:25:42,073 - firewall - INFO - Packet allowed: 192.168.0.1 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=192.168.0.1 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:25:42,073 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:42,073 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:42,173 - firewall - INFO - Packet allowed: 157.240.227.61 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=157.240.227.61 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:42,173 - firewall - INFO - Packet allowed: 157.240.227.61 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=157.240.227.61 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:42,174 - firewall - INFO - Packet allowed: 192.168.0.73 -> 157.240.227.61 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=157.240.227.61 | proto=TCP
+2025-10-30 22:25:42,174 - firewall - INFO - Packet allowed: 192.168.0.73 -> 157.240.227.61 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=157.240.227.61 | proto=TCP
+2025-10-30 22:25:42,587 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:42,587 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:42,688 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:42,688 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:42,688 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:42,688 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:42,688 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:42,689 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:43,192 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:43,292 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:43,292 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:43,292 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:43,293 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:43,293 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:43,393 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:43,393 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:43,393 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:43,393 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:43,394 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:43,394 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:43,997 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:43,998 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:44,099 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:44,099 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:44,099 - firewall - INFO - Packet allowed: 104.18.39.21 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=104.18.39.21 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:44,099 - firewall - INFO - Packet allowed: 104.18.39.21 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=104.18.39.21 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:44,099 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:44,200 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:44,200 - firewall - INFO - Packet allowed: 192.168.0.73 -> 104.18.39.21 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=104.18.39.21 | proto=TCP
+2025-10-30 22:25:44,200 - firewall - INFO - Packet allowed: 192.168.0.73 -> 104.18.39.21 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=104.18.39.21 | proto=TCP
+2025-10-30 22:25:44,301 - firewall - INFO - Packet allowed: 104.18.39.21 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=104.18.39.21 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:44,302 - firewall - INFO - Packet allowed: 104.18.39.21 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=104.18.39.21 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:44,303 - firewall - INFO - Packet allowed: 104.18.39.21 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=104.18.39.21 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:44,404 - firewall - INFO - Packet allowed: 104.18.39.21 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=104.18.39.21 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:44,404 - firewall - INFO - Packet allowed: 192.168.0.73 -> 104.18.39.21 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=104.18.39.21 | proto=TCP
+2025-10-30 22:25:44,404 - firewall - INFO - Packet allowed: 192.168.0.73 -> 104.18.39.21 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=104.18.39.21 | proto=TCP
+2025-10-30 22:25:44,506 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:44,506 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:44,506 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:44,506 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:44,506 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:44,506 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:44,507 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:44,607 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:44,607 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:44,607 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:44,607 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:44,607 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:44,608 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:44,608 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:44,608 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:44,708 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:44,708 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:44,709 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:44,709 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:44,709 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:44,910 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:44,911 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:44,913 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:44,914 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:45,116 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:45,116 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:45,116 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:45,116 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:45,116 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:45,116 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:45,116 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:45,217 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:45,217 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:45,217 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:45,217 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:45,217 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:45,217 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:45,218 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:45,218 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:45,218 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:45,218 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:45,218 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:45,318 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:45,319 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:45,319 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:45,319 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:45,319 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:45,319 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:45,319 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:45,319 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:45,319 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:45,319 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:45,420 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:45,420 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:45,420 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:45,420 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:45,420 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:45,420 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:45,420 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:45,420 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:45,420 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:45,420 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:45,421 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:45,421 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:45,521 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:45,522 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:45,522 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:45,522 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:45,522 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:45,522 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:45,925 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:45,925 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:46,027 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:46,027 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:46,027 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:46,027 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:46,027 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:46,028 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:46,028 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:46,128 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:46,129 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:46,129 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:46,129 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:46,129 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:46,129 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:46,129 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:46,130 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:46,130 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:46,230 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:46,231 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:46,231 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:46,231 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:46,231 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:46,231 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:46,231 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:46,231 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:46,231 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:46,231 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:46,332 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:46,333 - firewall - INFO - Packet allowed: 3.225.0.23 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=3.225.0.23 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:46,333 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:46,333 - firewall - INFO - Packet allowed: 192.168.0.73 -> 3.225.0.23 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=3.225.0.23 | proto=TCP
+2025-10-30 22:25:46,434 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:46,434 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:46,534 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:46,535 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:46,736 - firewall - INFO - Packet allowed: 192.168.0.73 -> 192.168.0.1 (UDP) - reason=Allow DNS UDP 53 | src=192.168.0.73 | dst=192.168.0.1 | proto=UDP
+2025-10-30 22:25:46,736 - firewall - INFO - Packet allowed: 192.168.0.73 -> 192.168.0.1 (UDP) - reason=Allow DNS UDP 53 | src=192.168.0.73 | dst=192.168.0.1 | proto=UDP
+2025-10-30 22:25:46,736 - firewall - INFO - Packet allowed: 192.168.0.1 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=192.168.0.1 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:25:46,736 - firewall - INFO - Packet allowed: 192.168.0.1 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=192.168.0.1 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:25:46,837 - firewall - WARNING - Packet blocked: 192.168.0.73 -> 146.75.46.172 (TCP) - Rule match (Block HTTP Port 80) | src=192.168.0.73 | dst=146.75.46.172 | proto=TCP
+2025-10-30 22:25:46,838 - firewall - WARNING - Packet blocked: 192.168.0.73 -> 146.75.46.172 (TCP) - Rule match (Block HTTP Port 80) | src=192.168.0.73 | dst=146.75.46.172 | proto=TCP
+2025-10-30 22:25:47,039 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.123.128.14 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.123.128.14 | proto=TCP
+2025-10-30 22:25:47,140 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.123.128.14 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.123.128.14 | proto=TCP
+2025-10-30 22:25:47,140 - firewall - INFO - Packet allowed: 192.168.0.73 -> 150.171.28.12 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=150.171.28.12 | proto=TCP
+2025-10-30 22:25:47,140 - firewall - INFO - Packet allowed: 192.168.0.73 -> 150.171.28.12 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=150.171.28.12 | proto=TCP
+2025-10-30 22:25:47,141 - firewall - INFO - Packet allowed: 52.123.128.14 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.123.128.14 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:47,141 - firewall - INFO - Packet allowed: 52.123.128.14 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.123.128.14 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:47,141 - firewall - INFO - Packet allowed: 52.123.128.14 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.123.128.14 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:47,141 - firewall - INFO - Packet allowed: 52.123.128.14 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=52.123.128.14 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:47,241 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.123.128.14 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.123.128.14 | proto=TCP
+2025-10-30 22:25:47,242 - firewall - INFO - Packet allowed: 192.168.0.73 -> 52.123.128.14 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=52.123.128.14 | proto=TCP
+2025-10-30 22:25:47,845 - firewall - WARNING - Packet blocked: 192.168.0.73 -> 146.75.46.172 (TCP) - Rule match (Block HTTP Port 80) | src=192.168.0.73 | dst=146.75.46.172 | proto=TCP
+2025-10-30 22:25:47,846 - firewall - WARNING - Packet blocked: 192.168.0.73 -> 146.75.46.172 (TCP) - Rule match (Block HTTP Port 80) | src=192.168.0.73 | dst=146.75.46.172 | proto=TCP
+2025-10-30 22:25:48,449 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:48,449 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:48,550 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:48,550 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:49,855 - firewall - WARNING - Packet blocked: 192.168.0.73 -> 146.75.46.172 (TCP) - Rule match (Block HTTP Port 80) | src=192.168.0.73 | dst=146.75.46.172 | proto=TCP
+2025-10-30 22:25:49,855 - firewall - WARNING - Packet blocked: 192.168.0.73 -> 146.75.46.172 (TCP) - Rule match (Block HTTP Port 80) | src=192.168.0.73 | dst=146.75.46.172 | proto=TCP
+2025-10-30 22:25:50,760 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:50,761 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:50,863 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:50,864 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:50,964 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:50,965 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:51,066 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:51,066 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:51,267 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:51,267 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:51,368 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:51,368 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:51,469 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:51,470 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:51,572 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:51,572 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:52,075 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.186.4 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.186.4 | proto=UDP
+2025-10-30 22:25:52,176 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.186.4 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.186.4 | proto=UDP
+2025-10-30 22:25:52,177 - firewall - WARNING - Packet blocked: 192.168.0.73 -> 74.125.133.188 (TCP) - Rule match (Log Unknown TCP Traffic) | src=192.168.0.73 | dst=74.125.133.188 | proto=TCP
+2025-10-30 22:25:52,278 - firewall - WARNING - Packet blocked: 192.168.0.73 -> 74.125.133.188 (TCP) - Rule match (Log Unknown TCP Traffic) | src=192.168.0.73 | dst=74.125.133.188 | proto=TCP
+2025-10-30 22:25:52,278 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.186.4 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.186.4 | proto=UDP
+2025-10-30 22:25:52,379 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.186.4 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.186.4 | proto=UDP
+2025-10-30 22:25:52,379 - firewall - INFO - Packet allowed: 142.250.186.4 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.186.4 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:25:52,379 - firewall - INFO - Packet allowed: 142.250.186.4 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.186.4 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:25:52,379 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.186.4 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.186.4 | proto=UDP
+2025-10-30 22:25:52,380 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.186.4 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.186.4 | proto=UDP
+2025-10-30 22:25:52,380 - firewall - INFO - Packet allowed: 142.250.186.4 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.186.4 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:25:52,381 - firewall - INFO - Packet allowed: 142.250.186.4 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.186.4 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:25:52,481 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.186.4 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.186.4 | proto=UDP
+2025-10-30 22:25:52,481 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.186.4 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.186.4 | proto=UDP
+2025-10-30 22:25:52,481 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.186.4 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.186.4 | proto=UDP
+2025-10-30 22:25:52,481 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.186.4 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.186.4 | proto=UDP
+2025-10-30 22:25:52,482 - firewall - INFO - Packet allowed: 142.250.186.4 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.186.4 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:25:52,482 - firewall - INFO - Packet allowed: 142.250.186.4 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.186.4 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:25:52,482 - firewall - INFO - Packet allowed: 142.250.186.4 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.186.4 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:25:52,482 - firewall - INFO - Packet allowed: 142.250.186.4 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.186.4 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:25:52,482 - firewall - INFO - Packet allowed: 142.250.186.4 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.186.4 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:25:52,482 - firewall - INFO - Packet allowed: 142.250.186.4 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.186.4 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:25:52,482 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.186.4 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.186.4 | proto=UDP
+2025-10-30 22:25:52,482 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.186.4 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.186.4 | proto=UDP
+2025-10-30 22:25:52,583 - firewall - INFO - Packet allowed: 142.250.186.4 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.186.4 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:25:52,584 - firewall - INFO - Packet allowed: 142.250.186.4 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.186.4 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:25:52,584 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:52,585 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:52,686 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:52,687 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:53,393 - firewall - INFO - Packet allowed: 13.217.255.81 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.217.255.81 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:53,393 - firewall - INFO - Packet allowed: 13.217.255.81 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.217.255.81 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:53,394 - firewall - INFO - Packet allowed: 13.217.255.81 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.217.255.81 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:53,394 - firewall - INFO - Packet allowed: 13.217.255.81 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.217.255.81 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:53,394 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.217.255.81 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.217.255.81 | proto=TCP
+2025-10-30 22:25:53,394 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.217.255.81 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.217.255.81 | proto=TCP
+2025-10-30 22:25:53,796 - firewall - WARNING - Packet blocked: 192.168.0.73 -> 146.75.46.172 (TCP) - Rule match (Block HTTP Port 80) | src=192.168.0.73 | dst=146.75.46.172 | proto=TCP
+2025-10-30 22:25:53,797 - firewall - WARNING - Packet blocked: 192.168.0.73 -> 146.75.46.172 (TCP) - Rule match (Block HTTP Port 80) | src=192.168.0.73 | dst=146.75.46.172 | proto=TCP
+2025-10-30 22:25:54,501 - firewall - INFO - Packet allowed: 192.168.0.1 -> 239.255.255.250 (UDP) - reason=ESTABLISHED | src=192.168.0.1 | dst=239.255.255.250 | proto=UDP
+2025-10-30 22:25:54,501 - firewall - INFO - Packet allowed: 192.168.0.1 -> 239.255.255.250 (UDP) - reason=ESTABLISHED | src=192.168.0.1 | dst=239.255.255.250 | proto=UDP
+2025-10-30 22:25:54,502 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:54,502 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:54,602 - firewall - INFO - Packet allowed: 192.168.0.1 -> 239.255.255.250 (UDP) - reason=ESTABLISHED | src=192.168.0.1 | dst=239.255.255.250 | proto=UDP
+2025-10-30 22:25:54,603 - firewall - INFO - Packet allowed: 192.168.0.1 -> 239.255.255.250 (UDP) - reason=ESTABLISHED | src=192.168.0.1 | dst=239.255.255.250 | proto=UDP
+2025-10-30 22:25:54,604 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:54,604 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:54,705 - firewall - INFO - Packet allowed: 192.168.0.1 -> 239.255.255.250 (UDP) - reason=ESTABLISHED | src=192.168.0.1 | dst=239.255.255.250 | proto=UDP
+2025-10-30 22:25:54,705 - firewall - INFO - Packet allowed: 192.168.0.1 -> 239.255.255.250 (UDP) - reason=ESTABLISHED | src=192.168.0.1 | dst=239.255.255.250 | proto=UDP
+2025-10-30 22:25:54,806 - firewall - INFO - Packet allowed: 192.168.0.1 -> 239.255.255.250 (UDP) - reason=ESTABLISHED | src=192.168.0.1 | dst=239.255.255.250 | proto=UDP
+2025-10-30 22:25:54,807 - firewall - INFO - Packet allowed: 192.168.0.1 -> 239.255.255.250 (UDP) - reason=ESTABLISHED | src=192.168.0.1 | dst=239.255.255.250 | proto=UDP
+2025-10-30 22:25:55,009 - firewall - INFO - Packet allowed: 192.168.0.73 -> 192.168.0.1 (UDP) - reason=Allow DNS UDP 53 | src=192.168.0.73 | dst=192.168.0.1 | proto=UDP
+2025-10-30 22:25:55,010 - firewall - INFO - Packet allowed: 192.168.0.73 -> 192.168.0.1 (UDP) - reason=Allow DNS UDP 53 | src=192.168.0.73 | dst=192.168.0.1 | proto=UDP
+2025-10-30 22:25:55,111 - firewall - INFO - Packet allowed: 192.168.0.73 -> 192.168.0.1 (UDP) - reason=Allow DNS UDP 53 | src=192.168.0.73 | dst=192.168.0.1 | proto=UDP
+2025-10-30 22:25:55,112 - firewall - INFO - Packet allowed: 192.168.0.73 -> 192.168.0.1 (UDP) - reason=Allow DNS UDP 53 | src=192.168.0.73 | dst=192.168.0.1 | proto=UDP
+2025-10-30 22:25:55,112 - firewall - INFO - Packet allowed: 192.168.0.1 -> 239.255.255.250 (UDP) - reason=ESTABLISHED | src=192.168.0.1 | dst=239.255.255.250 | proto=UDP
+2025-10-30 22:25:55,112 - firewall - INFO - Packet allowed: 192.168.0.1 -> 239.255.255.250 (UDP) - reason=ESTABLISHED | src=192.168.0.1 | dst=239.255.255.250 | proto=UDP
+2025-10-30 22:25:55,112 - firewall - INFO - Packet allowed: 192.168.0.1 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=192.168.0.1 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:25:55,112 - firewall - INFO - Packet allowed: 192.168.0.1 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=192.168.0.1 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:25:55,112 - firewall - INFO - Packet allowed: 192.168.0.1 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=192.168.0.1 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:25:55,112 - firewall - INFO - Packet allowed: 192.168.0.1 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=192.168.0.1 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:25:55,113 - firewall - INFO - Packet allowed: 192.168.0.1 -> 239.255.255.250 (UDP) - reason=ESTABLISHED | src=192.168.0.1 | dst=239.255.255.250 | proto=UDP
+2025-10-30 22:25:55,113 - firewall - INFO - Packet allowed: 192.168.0.1 -> 239.255.255.250 (UDP) - reason=ESTABLISHED | src=192.168.0.1 | dst=239.255.255.250 | proto=UDP
+2025-10-30 22:25:55,113 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,113 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,214 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,214 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,215 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,215 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,215 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,215 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,215 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,216 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,216 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,216 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,317 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,317 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,317 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,317 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,317 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,318 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,318 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,319 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,419 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,420 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,420 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,420 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,420 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,420 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,420 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,420 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,421 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,421 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,521 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,521 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,521 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,522 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,522 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,522 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,522 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,522 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,522 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,522 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,522 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,522 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,523 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,523 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,523 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,523 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,523 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,523 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,523 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,523 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,524 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,524 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,524 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,524 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,524 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,524 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,524 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,524 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,524 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,524 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,625 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,625 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,625 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,625 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,625 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,625 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,626 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,626 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,626 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,626 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,626 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,626 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,626 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,627 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,627 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,627 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,627 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,627 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,627 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,628 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,628 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,628 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,628 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,628 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,628 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,628 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,628 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,628 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,628 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,628 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,628 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,628 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,629 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,629 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,629 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,629 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,629 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,730 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,731 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,731 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,731 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,731 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,731 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,731 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,732 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,732 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,732 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,733 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,733 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,733 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,733 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,733 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,733 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,734 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,734 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,734 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,734 - firewall - INFO - Packet allowed: 104.18.39.21 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=104.18.39.21 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,734 - firewall - INFO - Packet allowed: 104.18.39.21 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=104.18.39.21 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,734 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,734 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,734 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,734 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,734 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,735 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,735 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,735 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,735 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,735 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,836 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,836 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,836 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,836 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,836 - firewall - INFO - Packet allowed: 192.168.0.73 -> 104.18.39.21 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=104.18.39.21 | proto=TCP
+2025-10-30 22:25:55,836 - firewall - INFO - Packet allowed: 192.168.0.73 -> 104.18.39.21 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=104.18.39.21 | proto=TCP
+2025-10-30 22:25:55,836 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,836 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,836 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,837 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,837 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,837 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,837 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,837 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,838 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,838 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,838 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,838 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,838 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,838 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,838 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,838 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,838 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,838 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,839 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,839 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,839 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,839 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,839 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,839 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,839 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,839 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,839 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,840 - firewall - INFO - Packet allowed: 13.107.213.63 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=13.107.213.63 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,940 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,941 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,941 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,942 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,943 - firewall - INFO - Packet allowed: 104.18.39.21 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=104.18.39.21 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,943 - firewall - INFO - Packet allowed: 104.18.39.21 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=104.18.39.21 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:55,944 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,945 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,945 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,946 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,946 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,946 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,947 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,947 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,947 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,948 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,948 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:55,948 - firewall - INFO - Packet allowed: 192.168.0.73 -> 13.107.213.63 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=13.107.213.63 | proto=TCP
+2025-10-30 22:25:56,150 - firewall - INFO - Packet allowed: 192.168.0.73 -> 20.42.73.24 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=20.42.73.24 | proto=TCP
+2025-10-30 22:25:56,250 - firewall - INFO - Packet allowed: 192.168.0.73 -> 20.42.73.24 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=20.42.73.24 | proto=TCP
+2025-10-30 22:25:56,452 - firewall - INFO - Packet allowed: 20.42.73.24 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=20.42.73.24 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:56,452 - firewall - INFO - Packet allowed: 20.42.73.24 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=20.42.73.24 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:25:56,754 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:56,754 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:56,955 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:56,956 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:56,956 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:56,956 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:57,158 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:57,159 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:57,260 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:57,261 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:57,463 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:57,463 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:57,464 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:57,464 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:58,468 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:58,469 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:58,570 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:25:58,570 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:26:00,380 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:26:00,380 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:26:00,480 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:26:00,481 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:26:01,887 - firewall - WARNING - Packet blocked: 192.168.0.73 -> 146.75.46.172 (TCP) - Rule match (Block HTTP Port 80) | src=192.168.0.73 | dst=146.75.46.172 | proto=TCP
+2025-10-30 22:26:01,887 - firewall - WARNING - Packet blocked: 192.168.0.73 -> 146.75.46.172 (TCP) - Rule match (Block HTTP Port 80) | src=192.168.0.73 | dst=146.75.46.172 | proto=TCP
+2025-10-30 22:26:02,490 - firewall - INFO - Packet allowed: 18.97.36.13 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=18.97.36.13 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:02,491 - firewall - INFO - Packet allowed: 18.97.36.13 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=18.97.36.13 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:02,491 - firewall - INFO - Packet allowed: 192.168.0.73 -> 18.97.36.13 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=18.97.36.13 | proto=TCP
+2025-10-30 22:26:02,592 - firewall - INFO - Packet allowed: 192.168.0.73 -> 18.97.36.13 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=18.97.36.13 | proto=TCP
+2025-10-30 22:26:02,796 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:02,797 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:02,797 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:26:02,797 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:26:02,998 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:02,999 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:02,999 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:26:02,999 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:26:02,999 - firewall - INFO - Packet allowed: 18.97.36.13 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=18.97.36.13 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:02,999 - firewall - INFO - Packet allowed: 18.97.36.13 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=18.97.36.13 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:02,999 - firewall - INFO - Packet allowed: 192.168.0.73 -> 18.97.36.13 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=18.97.36.13 | proto=TCP
+2025-10-30 22:26:02,999 - firewall - INFO - Packet allowed: 192.168.0.73 -> 18.97.36.13 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=18.97.36.13 | proto=TCP
+2025-10-30 22:26:03,100 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:26:03,100 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:26:03,302 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:03,302 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:03,302 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:03,403 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:03,403 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:03,404 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:03,404 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:03,404 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:03,404 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:26:03,404 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:26:03,404 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:03,404 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:03,404 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:03,505 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:03,505 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:03,505 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:03,505 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:03,505 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:03,505 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:26:03,506 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:26:03,506 - firewall - INFO - Packet allowed: 18.97.36.13 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=18.97.36.13 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:03,506 - firewall - INFO - Packet allowed: 18.97.36.13 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=18.97.36.13 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:03,607 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:26:03,608 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:26:03,909 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:03,910 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:03,910 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,010 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,010 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,010 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,010 - firewall - INFO - Packet allowed: 104.18.39.21 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=104.18.39.21 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,011 - firewall - INFO - Packet allowed: 104.18.39.21 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=104.18.39.21 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,011 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,011 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,011 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,011 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,011 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,011 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,112 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,112 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,112 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,112 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,112 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:04,112 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:04,112 - firewall - INFO - Packet allowed: 192.168.0.73 -> 104.18.39.21 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=104.18.39.21 | proto=TCP
+2025-10-30 22:26:04,112 - firewall - INFO - Packet allowed: 192.168.0.73 -> 104.18.39.21 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=104.18.39.21 | proto=TCP
+2025-10-30 22:26:04,112 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:04,112 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:04,213 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:04,213 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:04,213 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:04,213 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:04,213 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:04,213 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:04,213 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:04,213 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:04,213 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:04,213 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:04,314 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:04,314 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:04,314 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:04,314 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:04,314 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:04,314 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:04,315 - firewall - INFO - Packet allowed: 104.18.39.21 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=104.18.39.21 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,315 - firewall - INFO - Packet allowed: 104.18.39.21 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=104.18.39.21 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,315 - firewall - INFO - Packet allowed: 192.168.0.73 -> 104.18.39.21 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=104.18.39.21 | proto=TCP
+2025-10-30 22:26:04,315 - firewall - INFO - Packet allowed: 192.168.0.73 -> 104.18.39.21 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=104.18.39.21 | proto=TCP
+2025-10-30 22:26:04,416 - firewall - INFO - Packet allowed: 104.18.39.21 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=104.18.39.21 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,517 - firewall - INFO - Packet allowed: 104.18.39.21 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=104.18.39.21 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,517 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:26:04,517 - firewall - INFO - Packet allowed: 192.168.0.164 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.164 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:26:04,718 - firewall - INFO - Packet allowed: 192.168.0.73 -> 172.188.155.25 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=172.188.155.25 | proto=TCP
+2025-10-30 22:26:04,718 - firewall - INFO - Packet allowed: 192.168.0.73 -> 172.188.155.25 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=172.188.155.25 | proto=TCP
+2025-10-30 22:26:04,718 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,719 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,719 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,819 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,820 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,820 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,820 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,820 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,820 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,820 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,820 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,820 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,820 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:04,921 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:04,921 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:04,921 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:04,921 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:04,922 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:04,922 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,922 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,922 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,923 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:04,923 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:05,023 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:05,024 - firewall - INFO - Packet allowed: 172.188.155.25 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=172.188.155.25 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:05,024 - firewall - INFO - Packet allowed: 172.188.155.25 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=172.188.155.25 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:05,024 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:05,024 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:05,024 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:05,024 - firewall - INFO - Packet allowed: 192.168.0.73 -> 98.80.49.176 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=98.80.49.176 | proto=TCP
+2025-10-30 22:26:05,024 - firewall - INFO - Packet allowed: 192.168.0.73 -> 192.168.0.1 (UDP) - reason=Allow DNS UDP 53 | src=192.168.0.73 | dst=192.168.0.1 | proto=UDP
+2025-10-30 22:26:05,024 - firewall - INFO - Packet allowed: 192.168.0.73 -> 192.168.0.1 (UDP) - reason=Allow DNS UDP 53 | src=192.168.0.73 | dst=192.168.0.1 | proto=UDP
+2025-10-30 22:26:05,124 - firewall - INFO - Packet allowed: 192.168.0.73 -> 192.168.0.1 (UDP) - reason=Allow DNS UDP 53 | src=192.168.0.73 | dst=192.168.0.1 | proto=UDP
+2025-10-30 22:26:05,124 - firewall - INFO - Packet allowed: 192.168.0.73 -> 192.168.0.1 (UDP) - reason=Allow DNS UDP 53 | src=192.168.0.73 | dst=192.168.0.1 | proto=UDP
+2025-10-30 22:26:05,125 - firewall - INFO - Packet allowed: 192.168.0.1 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=192.168.0.1 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,125 - firewall - INFO - Packet allowed: 192.168.0.1 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=192.168.0.1 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,125 - firewall - INFO - Packet allowed: 192.168.0.1 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=192.168.0.1 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,125 - firewall - INFO - Packet allowed: 192.168.0.1 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=192.168.0.1 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,125 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.202.227 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.202.227 | proto=UDP
+2025-10-30 22:26:05,125 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.202.227 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.202.227 | proto=UDP
+2025-10-30 22:26:05,125 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.202.227 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.202.227 | proto=UDP
+2025-10-30 22:26:05,125 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.202.227 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.202.227 | proto=UDP
+2025-10-30 22:26:05,125 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.202.227 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.202.227 | proto=UDP
+2025-10-30 22:26:05,126 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.202.227 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.202.227 | proto=UDP
+2025-10-30 22:26:05,126 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,126 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,227 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,227 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,328 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.202.227 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.202.227 | proto=UDP
+2025-10-30 22:26:05,328 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.202.227 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.202.227 | proto=UDP
+2025-10-30 22:26:05,328 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,328 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,328 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,328 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,328 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,329 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,329 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,329 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,329 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,329 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,329 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.202.227 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.202.227 | proto=UDP
+2025-10-30 22:26:05,329 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.202.227 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.202.227 | proto=UDP
+2025-10-30 22:26:05,430 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.202.227 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.202.227 | proto=UDP
+2025-10-30 22:26:05,430 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.202.227 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.202.227 | proto=UDP
+2025-10-30 22:26:05,430 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,430 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,431 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.202.227 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.202.227 | proto=UDP
+2025-10-30 22:26:05,431 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.202.227 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.202.227 | proto=UDP
+2025-10-30 22:26:05,431 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,431 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,431 - firewall - INFO - Packet allowed: 192.168.0.73 -> 140.82.112.26 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=140.82.112.26 | proto=TCP
+2025-10-30 22:26:05,431 - firewall - INFO - Packet allowed: 192.168.0.73 -> 140.82.112.26 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=140.82.112.26 | proto=TCP
+2025-10-30 22:26:05,431 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,431 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,531 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:05,531 - firewall - INFO - Packet allowed: 98.80.49.176 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=98.80.49.176 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:05,532 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,532 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,532 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.202.227 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.202.227 | proto=UDP
+2025-10-30 22:26:05,532 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.202.227 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.202.227 | proto=UDP
+2025-10-30 22:26:05,532 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.202.227 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.202.227 | proto=UDP
+2025-10-30 22:26:05,532 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.202.227 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.202.227 | proto=UDP
+2025-10-30 22:26:05,532 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.202.227 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.202.227 | proto=UDP
+2025-10-30 22:26:05,532 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.202.227 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.202.227 | proto=UDP
+2025-10-30 22:26:05,532 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,532 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,632 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,633 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,633 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,633 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,633 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.202.227 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.202.227 | proto=UDP
+2025-10-30 22:26:05,633 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.202.227 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.202.227 | proto=UDP
+2025-10-30 22:26:05,633 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.202.227 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.202.227 | proto=UDP
+2025-10-30 22:26:05,634 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.202.227 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.202.227 | proto=UDP
+2025-10-30 22:26:05,634 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.202.227 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.202.227 | proto=UDP
+2025-10-30 22:26:05,634 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.202.227 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.202.227 | proto=UDP
+2025-10-30 22:26:05,634 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,634 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,634 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,634 - firewall - INFO - Packet allowed: 142.250.202.227 -> 192.168.0.73 (UDP) - reason=ESTABLISHED | src=142.250.202.227 | dst=192.168.0.73 | proto=UDP
+2025-10-30 22:26:05,635 - firewall - INFO - Packet allowed: 140.82.112.26 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=140.82.112.26 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:05,735 - firewall - INFO - Packet allowed: 140.82.112.26 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=140.82.112.26 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:05,735 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.202.227 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.202.227 | proto=UDP
+2025-10-30 22:26:05,736 - firewall - INFO - Packet allowed: 192.168.0.73 -> 142.250.202.227 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.0.73 | dst=142.250.202.227 | proto=UDP
+2025-10-30 22:26:05,836 - firewall - INFO - Packet allowed: 192.168.0.73 -> 140.82.112.26 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=140.82.112.26 | proto=TCP
+2025-10-30 22:26:05,837 - firewall - INFO - Packet allowed: 192.168.0.73 -> 140.82.112.26 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.0.73 | dst=140.82.112.26 | proto=TCP
+2025-10-30 22:26:06,338 - firewall - INFO - Packet allowed: 140.82.112.26 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=140.82.112.26 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:06,339 - firewall - INFO - Packet allowed: 140.82.112.26 -> 192.168.0.73 (TCP) - reason=Allow HTTPS Inbound | src=140.82.112.26 | dst=192.168.0.73 | proto=TCP
+2025-10-30 22:26:06,540 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
+2025-10-30 22:26:06,541 - firewall - INFO - Packet allowed: 192.168.0.209 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.209 | dst=224.0.0.251 | proto=UDP
