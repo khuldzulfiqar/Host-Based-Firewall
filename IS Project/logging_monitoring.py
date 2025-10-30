@@ -14,7 +14,9 @@ from typing import Dict, List, Any, Optional, Callable
 from dataclasses import dataclass, asdict
 from collections import defaultdict, deque
 import csv
+import psutil
 
+# Log levels
 class LogLevel:
     DEBUG = "DEBUG"
     INFO = "INFO"
@@ -69,50 +71,48 @@ class FirewallLogger:
     
     def _setup_loggers(self):
         """Setup different loggers for different event types"""
-        # Main firewall logger
         self.loggers['firewall'] = self._create_logger('firewall', 'firewall.log')
-        
-        # Security events logger
         self.loggers['security'] = self._create_logger('security', 'security.log')
-        
-        # Performance logger
         self.loggers['performance'] = self._create_logger('performance', 'performance.log')
-        
-        # Error logger
         self.loggers['error'] = self._create_logger('error', 'error.log')
     
     def _create_logger(self, name: str, filename: str) -> logging.Logger:
         """Create a logger with file handler"""
         logger = logging.getLogger(name)
         logger.setLevel(logging.DEBUG)
-        
-        # Remove existing handlers
         for handler in logger.handlers[:]:
             logger.removeHandler(handler)
-        
-        # File handler with rotation
         file_path = os.path.join(self.log_dir, filename)
         handler = logging.handlers.RotatingFileHandler(
             file_path, maxBytes=self.max_file_size, backupCount=self.max_files
         )
-        
-        # Formatter
-        formatter = logging.Formatter(
-            '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-        )
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         handler.setFormatter(formatter)
         logger.addHandler(handler)
-        
         return logger
     
+    # --- General log writing ---
+    def write_log(self, message: str, level: str = LogLevel.INFO):
+        """Directly write a log message"""
+        event = FirewallEvent(
+            timestamp=datetime.now(),
+            event_type="GENERAL",
+            level=level,
+            message=message
+        )
+        self.log_event(event)
+
+    # --- Log events ---
     def log_event(self, event: FirewallEvent):
         """Log a firewall event"""
         self.event_queue.append(event)
         self._update_stats(event)
-    
+
     def log_packet_blocked(self, src_ip: str, dst_ip: str, protocol: str, 
-                          reason: str = "Rule match", rule_id: str = None):
+                      reason: str = "Rule match", rule_id: str = None):
         """Log a blocked packet"""
+        if not reason:
+            reason = "Rule match"
         event = FirewallEvent(
             timestamp=datetime.now(),
             event_type="PACKET_BLOCKED",
@@ -125,14 +125,17 @@ class FirewallLogger:
             rule_id=rule_id
         )
         self.log_event(event)
-    
-    def log_packet_allowed(self, src_ip: str, dst_ip: str, protocol: str, rule_id: str = None):
-        """Log an allowed packet"""
+
+    def log_packet_allowed(self, src_ip, dst_ip, protocol, rule_id=None, reason=None):
+        """Log allowed packet"""
+        msg = f"Packet allowed: {src_ip} -> {dst_ip} ({protocol})"
+        if reason:
+            msg += f" - reason={reason}"
         event = FirewallEvent(
             timestamp=datetime.now(),
             event_type="PACKET_ALLOWED",
             level=LogLevel.INFO,
-            message=f"Packet allowed: {src_ip} -> {dst_ip} ({protocol})",
+            message=msg,
             source_ip=src_ip,
             dest_ip=dst_ip,
             protocol=protocol,
@@ -140,10 +143,10 @@ class FirewallLogger:
             rule_id=rule_id
         )
         self.log_event(event)
-    
+
+
     def log_connection_established(self, src_ip: str, dst_ip: str, protocol: str, 
                                  src_port: int, dst_port: int, connection_id: str):
-        """Log connection establishment"""
         event = FirewallEvent(
             timestamp=datetime.now(),
             event_type="CONNECTION_ESTABLISHED",
@@ -158,7 +161,6 @@ class FirewallLogger:
         self.log_event(event)
     
     def log_connection_closed(self, connection_id: str, duration: float):
-        """Log connection closure"""
         event = FirewallEvent(
             timestamp=datetime.now(),
             event_type="CONNECTION_CLOSED",
@@ -170,7 +172,6 @@ class FirewallLogger:
         self.log_event(event)
     
     def log_rule_added(self, rule_name: str, rule_id: str):
-        """Log rule addition"""
         event = FirewallEvent(
             timestamp=datetime.now(),
             event_type="RULE_ADDED",
@@ -181,7 +182,6 @@ class FirewallLogger:
         self.log_event(event)
     
     def log_rule_removed(self, rule_name: str, rule_id: str):
-        """Log rule removal"""
         event = FirewallEvent(
             timestamp=datetime.now(),
             event_type="RULE_REMOVED",
@@ -193,7 +193,6 @@ class FirewallLogger:
     
     def log_security_alert(self, message: str, severity: str = "HIGH", 
                           src_ip: str = None, additional_data: Dict = None):
-        """Log security alert"""
         event = FirewallEvent(
             timestamp=datetime.now(),
             event_type="SECURITY_ALERT",
@@ -205,7 +204,6 @@ class FirewallLogger:
         self.log_event(event)
     
     def log_performance_metric(self, metric_name: str, value: float, unit: str = ""):
-        """Log performance metric"""
         event = FirewallEvent(
             timestamp=datetime.now(),
             event_type="PERFORMANCE_METRIC",
@@ -215,8 +213,8 @@ class FirewallLogger:
         )
         self.log_event(event)
     
+    # --- Background processing ---
     def _process_logs(self):
-        """Background thread to process log events"""
         while self.running:
             try:
                 if self.event_queue:
@@ -229,9 +227,7 @@ class FirewallLogger:
                 time.sleep(1)
     
     def _write_event(self, event: FirewallEvent):
-        """Write event to appropriate log file"""
         try:
-            # Determine which logger to use
             logger_name = 'firewall'
             if event.event_type == "SECURITY_ALERT":
                 logger_name = 'security'
@@ -241,11 +237,8 @@ class FirewallLogger:
                 logger_name = 'error'
             
             logger = self.loggers[logger_name]
-            
-            # Format log message
             log_message = self._format_log_message(event)
             
-            # Log based on level
             if event.level == LogLevel.DEBUG:
                 logger.debug(log_message)
             elif event.level == LogLevel.INFO:
@@ -256,37 +249,24 @@ class FirewallLogger:
                 logger.error(log_message)
             elif event.level == LogLevel.CRITICAL:
                 logger.critical(log_message)
-            
         except Exception as e:
             print(f"Error writing log: {e}")
     
     def _format_log_message(self, event: FirewallEvent) -> str:
-        """Format event for logging"""
         parts = [event.message]
-        
-        if event.source_ip:
-            parts.append(f"src={event.source_ip}")
-        if event.dest_ip:
-            parts.append(f"dst={event.dest_ip}")
-        if event.protocol:
-            parts.append(f"proto={event.protocol}")
-        if event.port:
-            parts.append(f"port={event.port}")
-        if event.rule_id:
-            parts.append(f"rule={event.rule_id}")
-        if event.connection_id:
-            parts.append(f"conn={event.connection_id}")
-        if event.packet_size:
-            parts.append(f"size={event.packet_size}")
-        
+        if event.source_ip: parts.append(f"src={event.source_ip}")
+        if event.dest_ip: parts.append(f"dst={event.dest_ip}")
+        if event.protocol: parts.append(f"proto={event.protocol}")
+        if event.port: parts.append(f"port={event.port}")
+        if event.rule_id: parts.append(f"rule={event.rule_id}")
+        if event.connection_id: parts.append(f"conn={event.connection_id}")
+        if event.packet_size: parts.append(f"size={event.packet_size}")
         return " | ".join(parts)
     
     def _update_stats(self, event: FirewallEvent):
-        """Update logging statistics"""
         self.stats['total_events'] += 1
         self.stats['events_by_level'][event.level] += 1
         self.stats['events_by_type'][event.event_type] += 1
-        
         if event.action == "BLOCKED":
             self.stats['blocked_packets'] += 1
         elif event.action == "ALLOWED":

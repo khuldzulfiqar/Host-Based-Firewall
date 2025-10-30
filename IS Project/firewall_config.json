@@ -1,6 +1,6 @@
 {
   "firewall_enabled": true,
-  "default_action": "ALLOW",
+  "default_action": "DENY",
   "log_level": "INFO",
   "max_connections": 1000,
   "connection_timeout": 300,
@@ -15,12 +15,15 @@
   "packet_buffer_size": 1000,
   "rule_evaluation_timeout": 0.1,
   "cleanup_interval": 60,
-  "trusted_networks": [],
+  "trusted_networks": [
+    "142.123.14.8"
+  ],
   "blocked_networks": [],
   "allowed_ports": [
     80,
     443,
     53
   ],
-  "blocked_ports": []
+  "blocked_ports": [],
+  "enable_demo_rules": false
 }

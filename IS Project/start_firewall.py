@@ -67,6 +67,16 @@ def main():
         # Import and run the main application
         from firewall import EnhancedFirewallGUI
         import tkinter as tk
+        from rule_engine import RuleEngine, RuleAction  # <-- import here
+
+        # 1️⃣ Initialize the rule engine with logger
+        def logger(msg):
+            print(msg)
+        
+        engine = RuleEngine(log_callback=logger)
+
+        # 2️⃣ Set default action to DENY for security
+        engine.set_default_action(RuleAction.DENY)
         
         # Create main window
         root = tk.Tk()
@@ -94,3 +104,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    

@@ -152,13 +152,25 @@ class StatefulInspector:
         elif packet_info.protocol == 'UDP':
             connection_state = self._determine_udp_state(connection, packet_info)
         
+        # Update connection state
+        old_state = connection.state
         connection.state = connection_state
         
         # Log connection state changes
-        if self.log_callback and connection_state != connection.state:
+        if self.log_callback and connection_state != old_state:
             self.log_callback(f"Connection state change: {conn_id} -> {connection_state.value}")
         
-        return True, connection_state, connection
+        # For stateful inspection, allow established connections and new outbound connections
+        should_allow = True
+        if packet_info.protocol == 'TCP':
+            # Allow new outbound connections and established connections
+            should_allow = (connection_state in [ConnectionState.NEW, ConnectionState.ESTABLISHED] and 
+                          packet_info.direction == "OUT") or connection_state == ConnectionState.ESTABLISHED
+        elif packet_info.protocol == 'UDP':
+            # Allow outbound UDP and established UDP flows
+            should_allow = packet_info.direction == "OUT" or connection_state == ConnectionState.ESTABLISHED
+        
+        return should_allow, connection_state, connection
     
     def _create_connection(self, packet_info) -> Connection:
         """Create new connection object"""
@@ -257,6 +269,10 @@ class StatefulInspector:
             'oldest_connection': min([conn.first_seen for conn in self.connections.values()]) if self.connections else None,
             'newest_connection': max([conn.first_seen for conn in self.connections.values()]) if self.connections else None
         }
+    
+    def get_all_connections(self) -> List[Connection]:
+        """Get all active connections"""
+        return list(self.connections.values())
     
     def stop(self):
         """Stop the stateful inspector"""

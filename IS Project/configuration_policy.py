@@ -7,6 +7,8 @@ import json
 import os
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
+from tkinter import simpledialog
 from typing import Dict, List, Any, Optional, Union
 
 # Optional YAML import
@@ -81,6 +83,8 @@ class FirewallConfig:
     blocked_networks: List[str] = None
     allowed_ports: List[int] = None
     blocked_ports: List[int] = None
+    # Feature flags
+    enable_demo_rules: bool = False
     
     def __post_init__(self):
         if self.trusted_networks is None:
@@ -96,10 +100,12 @@ class ConfigurationManager:
     """Manages firewall configuration"""
     
     def __init__(self, config_file: str = "firewall_config.json"):
-        self.config_file = config_file
+        base_dir = os.path.dirname(__file__)
+        self.config_file = os.path.join(base_dir, config_file)
         self.config = FirewallConfig()
         self.policies: List[Policy] = []
-        self.config_lock = threading.Lock()
+        # Use re-entrant lock to avoid deadlock when save is called from update
+        self.config_lock = threading.RLock()
         
         # Load configuration
         self.load_configuration()
@@ -200,7 +206,8 @@ class PolicyManager:
     """Manages security policies"""
     
     def __init__(self, policy_file: str = "policies.json"):
-        self.policy_file = policy_file
+        base_dir = os.path.dirname(__file__)
+        self.policy_file = os.path.join(base_dir, policy_file)
         self.policies: List[Policy] = []
         self.policy_lock = threading.Lock()
         
@@ -413,6 +420,127 @@ class PolicyManager:
         
         return False
 
+
+class PolicyDialog(tk.Toplevel):
+    """Dialog for adding/editing policies"""
+    
+    def __init__(self, parent, policy=None):
+        super().__init__(parent)
+        self.policy = policy
+        self.result = None
+        
+        self.title("Edit Policy" if policy else "Add Policy")
+        self.geometry("600x500")
+        self.resizable(False, False)
+        
+        # Make dialog modal
+        self.transient(parent)
+        self.grab_set()
+        
+        self._create_widgets()
+        
+        # Center dialog
+        self.update_idletasks()
+        x = (self.winfo_screenwidth() // 2) - (self.winfo_width() // 2)
+        y = (self.winfo_screenheight() // 2) - (self.winfo_height() // 2)
+        self.geometry(f"+{x}+{y}")
+    
+    def _create_widgets(self):
+        """Create dialog widgets"""
+        # Main frame
+        main_frame = ttk.Frame(self, padding="10")
+        main_frame.pack(fill=tk.BOTH, expand=True)
+        
+        # Policy ID
+        ttk.Label(main_frame, text="Policy ID:").grid(row=0, column=0, sticky=tk.W, pady=5)
+        self.id_var = tk.StringVar(value=self.policy.id if self.policy else f"policy_{datetime.now().strftime('%Y%m%d%H%M%S')}")
+        id_entry = ttk.Entry(main_frame, textvariable=self.id_var, width=40)
+        id_entry.grid(row=0, column=1, pady=5, padx=5)
+        if self.policy:  # Disable ID editing for existing policies
+            id_entry.config(state='readonly')
+        
+        # Policy Name
+        ttk.Label(main_frame, text="Name:").grid(row=1, column=0, sticky=tk.W, pady=5)
+        self.name_var = tk.StringVar(value=self.policy.name if self.policy else "")
+        ttk.Entry(main_frame, textvariable=self.name_var, width=40).grid(row=1, column=1, pady=5, padx=5)
+        
+        # Policy Type
+        ttk.Label(main_frame, text="Type:").grid(row=2, column=0, sticky=tk.W, pady=5)
+        self.type_var = tk.StringVar(value=self.policy.policy_type.value if self.policy else "SECURITY")
+        ttk.Combobox(main_frame, textvariable=self.type_var, 
+                    values=[pt.value for pt in PolicyType], width=37).grid(row=2, column=1, pady=5, padx=5)
+        
+        # Description
+        ttk.Label(main_frame, text="Description:").grid(row=3, column=0, sticky=tk.NW, pady=5)
+        self.description_text = tk.Text(main_frame, height=3, width=40)
+        self.description_text.grid(row=3, column=1, pady=5, padx=5)
+        if self.policy:
+            self.description_text.insert(tk.END, self.policy.description)
+        
+        # Priority
+        ttk.Label(main_frame, text="Priority:").grid(row=4, column=0, sticky=tk.W, pady=5)
+        self.priority_var = tk.IntVar(value=self.policy.priority if self.policy else 100)
+        ttk.Spinbox(main_frame, from_=1, to=1000, textvariable=self.priority_var, width=38).grid(row=4, column=1, pady=5, padx=5)
+        
+        # Actions
+        ttk.Label(main_frame, text="Actions:").grid(row=5, column=0, sticky=tk.NW, pady=5)
+        actions_frame = ttk.Frame(main_frame)
+        actions_frame.grid(row=5, column=1, pady=5, padx=5, sticky=tk.W)
+        
+        self.action_vars = {}
+        current_actions = [a.value for a in self.policy.actions] if self.policy else []
+        for i, action in enumerate(PolicyAction):
+            var = tk.BooleanVar(value=action.value in current_actions)
+            self.action_vars[action.value] = var
+            ttk.Checkbutton(actions_frame, text=action.value, variable=var).pack(anchor=tk.W)
+        
+        # Enabled
+        self.enabled_var = tk.BooleanVar(value=self.policy.enabled if self.policy else True)
+        ttk.Checkbutton(main_frame, text="Enabled", variable=self.enabled_var).grid(row=6, column=1, sticky=tk.W, pady=10, padx=5)
+        
+        # Buttons
+        button_frame = ttk.Frame(main_frame)
+        button_frame.grid(row=7, column=0, columnspan=2, pady=20)
+        
+        ttk.Button(button_frame, text="Save", command=self._on_save).pack(side=tk.LEFT, padx=5)
+        ttk.Button(button_frame, text="Cancel", command=self._on_cancel).pack(side=tk.LEFT, padx=5)
+    
+    def _on_save(self):
+        """Save policy"""
+        # Validate input
+        if not self.name_var.get().strip():
+            messagebox.showerror("Validation Error", "Policy name is required")
+            return
+        
+        # Get selected actions
+        selected_actions = [PolicyAction(action) for action, var in self.action_vars.items() if var.get()]
+        if not selected_actions:
+            messagebox.showerror("Validation Error", "At least one action must be selected")
+            return
+        
+        # Create policy
+        self.result = Policy(
+            id=self.id_var.get(),
+            name=self.name_var.get(),
+            policy_type=PolicyType(self.type_var.get()),
+            description=self.description_text.get('1.0', tk.END).strip(),
+            rules=self.policy.rules if self.policy else [],
+            conditions=self.policy.conditions if self.policy else [],
+            actions=selected_actions,
+            priority=self.priority_var.get(),
+            enabled=self.enabled_var.get(),
+            created_at=self.policy.created_at if self.policy else datetime.now(),
+            updated_at=datetime.now()
+        )
+        
+        self.destroy()
+    
+    def _on_cancel(self):
+        """Cancel dialog"""
+        self.result = None
+        self.destroy()
+
+
 class ConfigurationGUI:
     """GUI for configuration management"""
     
@@ -430,6 +558,13 @@ class ConfigurationGUI:
         self._create_security_tab()
         self._create_network_tab()
         self._create_policies_tab()
+
+        # Save/Reload controls
+        controls = ttk.Frame(parent)
+        controls.pack(fill=tk.X, padx=10, pady=8)
+        ttk.Button(controls, text="Save Configuration", command=self._on_save).pack(side=tk.LEFT, padx=5)
+        ttk.Button(controls, text="Reload From File", command=self._on_reload).pack(side=tk.LEFT, padx=5)
+        ttk.Button(controls, text="Reset to Defaults", command=self._on_reset).pack(side=tk.LEFT, padx=5)
     
     def _create_general_tab(self):
         """Create general configuration tab"""
@@ -437,23 +572,37 @@ class ConfigurationGUI:
         self.notebook.add(general_frame, text="General")
         
         # General settings
-        ttk.Label(general_frame, text="General Settings").pack(anchor=tk.W, padx=10, pady=5)
+        ttk.Label(general_frame, text="General Settings", font=('TkDefaultFont', 10, 'bold')).pack(anchor=tk.W, padx=10, pady=10)
         
         # Firewall enabled
         self.firewall_enabled_var = tk.BooleanVar(value=self.config_manager.get_config().firewall_enabled)
-        ttk.Checkbutton(general_frame, text="Enable Firewall", variable=self.firewall_enabled_var).pack(anchor=tk.W, padx=20)
+        ttk.Checkbutton(general_frame, text="Enable Firewall", variable=self.firewall_enabled_var).pack(anchor=tk.W, padx=20, pady=5)
         
         # Default action
         ttk.Label(general_frame, text="Default Action:").pack(anchor=tk.W, padx=20, pady=(10, 0))
         self.default_action_var = tk.StringVar(value=self.config_manager.get_config().default_action)
         ttk.Combobox(general_frame, textvariable=self.default_action_var, 
-                    values=["ALLOW", "DENY"]).pack(anchor=tk.W, padx=40)
+                    values=["ALLOW", "DENY"], state='readonly').pack(anchor=tk.W, padx=40, pady=5)
         
         # Log level
         ttk.Label(general_frame, text="Log Level:").pack(anchor=tk.W, padx=20, pady=(10, 0))
         self.log_level_var = tk.StringVar(value=self.config_manager.get_config().log_level)
         ttk.Combobox(general_frame, textvariable=self.log_level_var,
-                    values=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]).pack(anchor=tk.W, padx=40)
+                    values=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"], 
+                    state='readonly').pack(anchor=tk.W, padx=40, pady=5)
+        
+        # Connection settings
+        ttk.Label(general_frame, text="Connection Settings", font=('TkDefaultFont', 10, 'bold')).pack(anchor=tk.W, padx=10, pady=(20, 10))
+        
+        ttk.Label(general_frame, text="Max Connections:").pack(anchor=tk.W, padx=20, pady=(5, 0))
+        self.max_connections_var = tk.IntVar(value=self.config_manager.get_config().max_connections)
+        ttk.Spinbox(general_frame, from_=100, to=10000, textvariable=self.max_connections_var, 
+                   width=37).pack(anchor=tk.W, padx=40, pady=5)
+        
+        ttk.Label(general_frame, text="Connection Timeout (seconds):").pack(anchor=tk.W, padx=20, pady=(5, 0))
+        self.connection_timeout_var = tk.IntVar(value=self.config_manager.get_config().connection_timeout)
+        ttk.Spinbox(general_frame, from_=10, to=3600, textvariable=self.connection_timeout_var, 
+                   width=37).pack(anchor=tk.W, padx=40, pady=5)
     
     def _create_security_tab(self):
         """Create security configuration tab"""
@@ -461,118 +610,94 @@ class ConfigurationGUI:
         self.notebook.add(security_frame, text="Security")
         
         # Security settings
-        ttk.Label(security_frame, text="Security Settings").pack(anchor=tk.W, padx=10, pady=5)
+        ttk.Label(security_frame, text="Security Features", font=('TkDefaultFont', 10, 'bold')).pack(anchor=tk.W, padx=10, pady=10)
         
         # Stateful inspection
         self.stateful_var = tk.BooleanVar(value=self.config_manager.get_config().enable_stateful_inspection)
         ttk.Checkbutton(security_frame, text="Enable Stateful Inspection", 
-                       variable=self.stateful_var).pack(anchor=tk.W, padx=20)
+                       variable=self.stateful_var).pack(anchor=tk.W, padx=20, pady=5)
         
         # Intrusion detection
         self.intrusion_var = tk.BooleanVar(value=self.config_manager.get_config().enable_intrusion_detection)
         ttk.Checkbutton(security_frame, text="Enable Intrusion Detection", 
-                       variable=self.intrusion_var).pack(anchor=tk.W, padx=20)
+                       variable=self.intrusion_var).pack(anchor=tk.W, padx=20, pady=5)
         
         # DoS protection
         self.dos_var = tk.BooleanVar(value=self.config_manager.get_config().enable_dos_protection)
         ttk.Checkbutton(security_frame, text="Enable DoS Protection", 
-                       variable=self.dos_var).pack(anchor=tk.W, padx=20)
+                       variable=self.dos_var).pack(anchor=tk.W, padx=20, pady=5)
+        
+        # Rate limiting
+        ttk.Label(security_frame, text="Rate Limiting", font=('TkDefaultFont', 10, 'bold')).pack(anchor=tk.W, padx=10, pady=(20, 10))
+        
+        ttk.Label(security_frame, text="Max Packets Per Second:").pack(anchor=tk.W, padx=20, pady=(5, 0))
+        self.max_packets_var = tk.IntVar(value=self.config_manager.get_config().max_packets_per_second)
+        ttk.Spinbox(security_frame, from_=1000, to=100000, textvariable=self.max_packets_var, 
+                   width=37).pack(anchor=tk.W, padx=40, pady=5)
+        
+        # Logging
+        ttk.Label(security_frame, text="Logging Options", font=('TkDefaultFont', 10, 'bold')).pack(anchor=tk.W, padx=10, pady=(20, 10))
+        
+        self.log_packets_var = tk.BooleanVar(value=self.config_manager.get_config().log_packets)
+        ttk.Checkbutton(security_frame, text="Log Packets", 
+                       variable=self.log_packets_var).pack(anchor=tk.W, padx=20, pady=5)
+        
+        self.log_connections_var = tk.BooleanVar(value=self.config_manager.get_config().log_connections)
+        ttk.Checkbutton(security_frame, text="Log Connections", 
+                       variable=self.log_connections_var).pack(anchor=tk.W, padx=20, pady=5)
+        
+        self.log_security_events_var = tk.BooleanVar(value=self.config_manager.get_config().log_security_events)
+        ttk.Checkbutton(security_frame, text="Log Security Events", 
+                       variable=self.log_security_events_var).pack(anchor=tk.W, padx=20, pady=5)
     
     def _create_network_tab(self):
         """Create network configuration tab"""
         network_frame = ttk.Frame(self.notebook)
         self.notebook.add(network_frame, text="Network")
         
-        # Network settings
-        ttk.Label(network_frame, text="Network Settings").pack(anchor=tk.W, padx=10, pady=5)
+        # Create scrollable frame
+        canvas = tk.Canvas(network_frame)
+        scrollbar = ttk.Scrollbar(network_frame, orient="vertical", command=canvas.yview)
+        scrollable_frame = ttk.Frame(canvas)
+        
+        scrollable_frame.bind(
+            "<Configure>",
+            lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
+        )
+        
+        canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+        canvas.configure(yscrollcommand=scrollbar.set)
         
         # Trusted networks
-        ttk.Label(network_frame, text="Trusted Networks:").pack(anchor=tk.W, padx=20, pady=(10, 0))
-        self.trusted_networks_text = tk.Text(network_frame, height=3, width=50)
-        self.trusted_networks_text.pack(anchor=tk.W, padx=40)
+        ttk.Label(scrollable_frame, text="Trusted Networks", font=('TkDefaultFont', 10, 'bold')).pack(anchor=tk.W, padx=10, pady=10)
+        ttk.Label(scrollable_frame, text="Enter one network per line (e.g., 192.168.1.0/24):").pack(anchor=tk.W, padx=20, pady=(0, 5))
+        
+        self.trusted_networks_text = tk.Text(scrollable_frame, height=5, width=60)
+        self.trusted_networks_text.pack(anchor=tk.W, padx=40, pady=5)
         self.trusted_networks_text.insert(tk.END, '\n'.join(self.config_manager.get_config().trusted_networks))
         
         # Blocked networks
-        ttk.Label(network_frame, text="Blocked Networks:").pack(anchor=tk.W, padx=20, pady=(10, 0))
-        self.blocked_networks_text = tk.Text(network_frame, height=3, width=50)
-        self.blocked_networks_text.pack(anchor=tk.W, padx=40)
+        ttk.Label(scrollable_frame, text="Blocked Networks", font=('TkDefaultFont', 10, 'bold')).pack(anchor=tk.W, padx=10, pady=(20, 10))
+        ttk.Label(scrollable_frame, text="Enter one network per line (e.g., 10.0.0.0/8):").pack(anchor=tk.W, padx=20, pady=(0, 5))
+        
+        self.blocked_networks_text = tk.Text(scrollable_frame, height=5, width=60)
+        self.blocked_networks_text.pack(anchor=tk.W, padx=40, pady=5)
         self.blocked_networks_text.insert(tk.END, '\n'.join(self.config_manager.get_config().blocked_networks))
-    
-    def _create_policies_tab(self):
-        """Create policies management tab"""
-        policies_frame = ttk.Frame(self.notebook)
-        self.notebook.add(policies_frame, text="Policies")
         
-        # Policies list
-        ttk.Label(policies_frame, text="Security Policies").pack(anchor=tk.W, padx=10, pady=5)
+        # Allowed ports
+        ttk.Label(scrollable_frame, text="Allowed Ports", font=('TkDefaultFont', 10, 'bold')).pack(anchor=tk.W, padx=10, pady=(20, 10))
+        ttk.Label(scrollable_frame, text="Enter comma-separated port numbers (e.g., 80, 443, 22):").pack(anchor=tk.W, padx=20, pady=(0, 5))
         
-        # Create policies treeview
-        columns = ('Name', 'Type', 'Enabled', 'Priority', 'Actions')
-        self.policies_tree = ttk.Treeview(policies_frame, columns=columns, show='headings', height=10)
+        self.allowed_ports_var = tk.StringVar(value=', '.join(map(str, self.config_manager.get_config().allowed_ports)))
+        ttk.Entry(scrollable_frame, textvariable=self.allowed_ports_var, width=60).pack(anchor=tk.W, padx=40, pady=5)
         
-        for col in columns:
-            self.policies_tree.heading(col, text=col)
-            self.policies_tree.column(col, width=150)
+        # Blocked ports
+        ttk.Label(scrollable_frame, text="Blocked Ports", font=('TkDefaultFont', 10, 'bold')).pack(anchor=tk.W, padx=10, pady=(20, 10))
+        ttk.Label(scrollable_frame, text="Enter comma-separated port numbers:").pack(anchor=tk.W, padx=20, pady=(0, 5))
         
-        self.policies_tree.pack(fill=tk.BOTH, expand=True, padx=10, pady=5)
+        self.blocked_ports_var = tk.StringVar(value=', '.join(map(str, self.config_manager.get_config().blocked_ports)))
+        ttk.Entry(scrollable_frame, textvariable=self.blocked_ports_var, width=60).pack(anchor=tk.W, padx=40, pady=5)
         
-        # Policy buttons
-        button_frame = ttk.Frame(policies_frame)
-        button_frame.pack(fill=tk.X, padx=10, pady=5)
-        
-        ttk.Button(button_frame, text="Add Policy", command=self._add_policy).pack(side=tk.LEFT, padx=5)
-        ttk.Button(button_frame, text="Edit Policy", command=self._edit_policy).pack(side=tk.LEFT, padx=5)
-        ttk.Button(button_frame, text="Delete Policy", command=self._delete_policy).pack(side=tk.LEFT, padx=5)
-        ttk.Button(button_frame, text="Refresh", command=self._refresh_policies).pack(side=tk.LEFT, padx=5)
-        
-        # Load policies
-        self._refresh_policies()
-    
-    def _refresh_policies(self):
-        """Refresh policies list"""
-        for item in self.policies_tree.get_children():
-            self.policies_tree.delete(item)
-        
-        for policy in self.policy_manager.policies:
-            actions_str = ', '.join([action.value for action in policy.actions])
-            self.policies_tree.insert('', 'end', values=(
-                policy.name,
-                policy.policy_type.value,
-                'Yes' if policy.enabled else 'No',
-                policy.priority,
-                actions_str
-            ))
-    
-    def _add_policy(self):
-        """Add new policy"""
-        # Implementation for adding policy dialog
-        pass
-    
-    def _edit_policy(self):
-        """Edit selected policy"""
-        # Implementation for editing policy dialog
-        pass
-    
-    def _delete_policy(self):
-        """Delete selected policy"""
-        # Implementation for deleting policy
-        pass
-    
-    def save_configuration(self):
-        """Save all configuration changes"""
-        try:
-            # Update configuration
-            self.config_manager.update_config(
-                firewall_enabled=self.firewall_enabled_var.get(),
-                default_action=self.default_action_var.get(),
-                log_level=self.log_level_var.get(),
-                enable_stateful_inspection=self.stateful_var.get(),
-                enable_intrusion_detection=self.intrusion_var.get(),
-                enable_dos_protection=self.dos_var.get(),
-                trusted_networks=self.trusted_networks_text.get('1.0', tk.END).strip().split('\n'),
-                blocked_networks=self.blocked_networks_text.get('1.0', tk.END).strip().split('\n')
-            )
-            return True
-        except Exception as e:
-            print(f"Error saving configuration: {e}")
-            return False
+        # Pack canvas and scrollbar
+        canvas.pack(side="left", fill="both", expand=True)
+        scrollbar.pack(side="right", fill="y")

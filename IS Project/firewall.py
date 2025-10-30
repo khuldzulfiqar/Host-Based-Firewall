@@ -36,6 +36,37 @@ class EnhancedFirewall:
             'connections_tracked': 0,
             'rules_evaluated': 0
         }
+        self._install_demo_rules()
+
+    def _install_demo_rules(self):
+        """Install quick demo rules so user can immediately verify blocking."""
+        existing = [r.name for r in self.rule_engine.get_all_rules()]
+
+        # Demo block IP (8.8.8.8)
+        if "Block 8.8.8.8" not in existing:
+            self.rule_engine.add_rule(FirewallRule(
+                id="demo_block_8888",
+                name="Block 8.8.8.8",
+                action=RuleAction.DENY,
+                direction=RuleDirection.OUTBOUND,
+                protocol=Protocol.ANY,
+                dst_ip="8.8.8.8",
+                priority=1,
+                description="Demo: Block outbound traffic to Google DNS"
+            ))
+
+        # Optional: Block HTTP (port 80) outbound
+        if "Block HTTP Port 80" not in existing:
+            self.rule_engine.add_rule(FirewallRule(
+                id="demo_block_http80",
+                name="Block HTTP Port 80",
+                action=RuleAction.DENY,
+                direction=RuleDirection.OUTBOUND,
+                protocol=Protocol.TCP,
+                dst_port=80,
+                priority=2,
+                description="Demo: Block outbound HTTP traffic"
+            ))
 
     def start(self):
         """Start the enhanced firewall"""
@@ -44,10 +75,35 @@ class EnhancedFirewall:
         
         # Start monitoring
         self.monitor.start_monitoring()
-        
-        # Install demo/blocking rules for verification (only once per run)
+
+        # Start stateful inspector background tasks (cleanup thread, etc.)
         try:
-            self._install_demo_rules()
+            if hasattr(self.stateful_inspector, 'start'):
+                self.stateful_inspector.start()
+        except Exception as e:
+            self.log_callback(f"Stateful inspector start error: {e}")
+        
+        # Apply default action from config
+        try:
+            cfg = self.config_manager.get_config()
+            if str(cfg.default_action).upper() == "DENY":
+                self.rule_engine.set_default_action(RuleAction.DENY)
+            else:
+                self.rule_engine.set_default_action(RuleAction.ALLOW)
+        except Exception as e:
+            self.log_callback(f"Config default_action error: {e}")
+
+        # Optionally install demo rules if enabled in config
+        try:
+            cfg = self.config_manager.get_config()
+            if getattr(cfg, 'enable_demo_rules', False):
+                self._install_demo_rules()
+            # Install baseline allow rules when default policy is DENY to keep system usable
+            if str(cfg.default_action).upper() == "DENY" and getattr(cfg, 'enable_baseline_rules', True):
+                self._install_baseline_rules()
+            # Install security hardening inbound deny rules if enabled
+            if getattr(cfg, 'enable_hardening_rules', True):
+                self._install_hardening_rules()
         except Exception as e:
             self.log_callback(f"Rule setup error: {e}")
         
@@ -73,8 +129,8 @@ class EnhancedFirewall:
             
             self.log_callback("Starting packet capture with processing...")
             
-            # Focus on IPv4 TCP/UDP so connections display and noise is reduced
-            with WinDivert("ip and (tcp or udp)") as w:
+            # Capture all IPv4 traffic (TCP/UDP/ICMP) so enforcement truly applies
+            with WinDivert("ip") as w:
                 for packet in w:
                     if not self.running:
                         break
@@ -85,34 +141,109 @@ class EnhancedFirewall:
                     self.packet_capture.captured_packets.append(packet_info)
                     
                     # Process through firewall
-                    should_allow = self.process_packet(packet_info)
-                    
-                    # Send or drop packet based on decision
+                    should_allow, match_info = self.process_packet(packet_info)
+
+                    # Build concise reason string
+                    reason = ""
+                    if match_info:
+                        if match_info.get('decision_source') == 'rule':
+                            if match_info.get('rule_name'):
+                                reason = f"reason=rule('{match_info['rule_name']}')"
+                            else:
+                                reason = "reason=rule"
+                        elif match_info.get('decision_source') == 'stateful':
+                            state = match_info.get('connection_state') or 'UNTRACKED'
+                            reason = f"reason=stateful({state})"
+                        elif match_info.get('decision_source') == 'default':
+                            # Only show if truly default-based
+                            reason = f"reason=default({match_info.get('default_action','')})"
+
+                    # Compose standard packet text with ports and direction
+                    dir_text = 'OUT' if packet_info.direction == 'OUT' else 'IN'
+                    src = f"{packet_info.src_ip}:{packet_info.src_port}" if packet_info.src_port else packet_info.src_ip
+                    dst = f"{packet_info.dst_ip}:{packet_info.dst_port}" if packet_info.dst_port else packet_info.dst_ip
+
+                    # Send or drop packet based on decision and log
+                    should_allow, match_info = self.process_packet(packet_info)
+
                     if should_allow:
                         w.send(packet)
-                        self.log_callback(f"✅ ALLOWED: {packet_info.src_ip} → {packet_info.dst_ip} ({packet_info.protocol})")
+                        self.log_callback(f"✅ ALLOWED {packet_info.src_ip} -> {packet_info.dst_ip} {packet_info.protocol} {match_info}")
                     else:
-                        self.log_callback(f"❌ BLOCKED: {packet_info.src_ip} → {packet_info.dst_ip} ({packet_info.protocol})")
+                        # Drop packet
+                        self.log_callback(f"❌ BLOCKED {packet_info.src_ip} -> {packet_info.dst_ip} {packet_info.protocol} {match_info}")
+
                     
         except Exception as e:
             self.log_callback(f"Packet capture error: {e}")
 
-    def _install_demo_rules(self):
-        """Install quick demo rules so user can immediately verify blocking."""
-        # If rules already include our demo rules, skip
+    def _install_baseline_rules(self):
+        """Essential allow rules for a usable default-deny posture."""
         existing = [r.name for r in self.rule_engine.get_all_rules()]
-        
-        # Highest priority first (lower number == higher priority)
-        if "Block 8.8.8.8" not in existing:
+        baseline = [
+            ("Allow DNS UDP 53", RuleAction.ALLOW, RuleDirection.OUTBOUND, Protocol.UDP, None, None, None, 53, 5,
+             "Allow DNS queries"),
+            ("Allow HTTPS TCP 443", RuleAction.ALLOW, RuleDirection.OUTBOUND, Protocol.TCP, None, None, None, 443, 6,
+             "Allow HTTPS over TCP"),
+            ("Allow HTTPS QUIC UDP 443", RuleAction.ALLOW, RuleDirection.OUTBOUND, Protocol.UDP, None, None, None, 443, 7,
+             "Allow QUIC/HTTP3 over UDP"),
+            ("Allow HTTP TCP 80", RuleAction.ALLOW, RuleDirection.OUTBOUND, Protocol.TCP, None, None, None, 80, 8,
+             "Allow HTTP (optional)"),
+            ("Allow NTP UDP 123", RuleAction.ALLOW, RuleDirection.OUTBOUND, Protocol.UDP, None, None, None, 123, 9,
+             "Allow time sync"),
+            ("Allow DHCP", RuleAction.ALLOW, RuleDirection.BOTH, Protocol.UDP, None, None, 68, 67, 10,
+             "Allow DHCP lease/renew")
+        ]
+
+        for name, action, direction, proto, src_ip, dst_ip, src_port, dst_port, prio, desc in baseline:
+            if name in existing:
+                continue
             self.rule_engine.add_rule(FirewallRule(
-                id="demo_block_8888",
-                name="Block 8.8.8.8",
-                action=RuleAction.DENY,
-                direction=RuleDirection.OUTBOUND,
-                protocol=Protocol.ANY,
-                dst_ip="8.8.8.8",
-                priority=1,
-                description="Demo: Block outbound traffic to Google DNS"
+                id=f"baseline_{name.replace(' ', '_').lower()}",
+                name=name,
+                action=action,
+                direction=direction,
+                protocol=proto,
+                src_ip=src_ip,
+                dst_ip=dst_ip,
+                src_port=src_port,
+                dst_port=dst_port,
+                priority=prio,
+                description=desc
+            ))
+
+    def _install_hardening_rules(self):
+        """Inbound deny rules for common risky services."""
+        existing = [r.name for r in self.rule_engine.get_all_rules()]
+        denies = [
+            ("Block Inbound SMB 445", RuleAction.DENY, RuleDirection.INBOUND, Protocol.TCP, None, None, None, 445, 20,
+             "Block inbound SMB"),
+            ("Block Inbound RDP 3389", RuleAction.DENY, RuleDirection.INBOUND, Protocol.TCP, None, None, None, 3389, 21,
+             "Block inbound RDP"),
+            ("Block Inbound Telnet 23", RuleAction.DENY, RuleDirection.INBOUND, Protocol.TCP, None, None, None, 23, 22,
+             "Block inbound Telnet"),
+            ("Block Inbound FTP 21", RuleAction.DENY, RuleDirection.INBOUND, Protocol.TCP, None, None, None, 21, 23,
+             "Block inbound FTP"),
+            ("Block Inbound WinRM 5985", RuleAction.DENY, RuleDirection.INBOUND, Protocol.TCP, None, None, None, 5985, 24,
+             "Block inbound WinRM HTTP"),
+            ("Block Inbound WinRM 5986", RuleAction.DENY, RuleDirection.INBOUND, Protocol.TCP, None, None, None, 5986, 25,
+             "Block inbound WinRM HTTPS")
+        ]
+        for name, action, direction, proto, src_ip, dst_ip, src_port, dst_port, prio, desc in denies:
+            if name in existing:
+                continue
+            self.rule_engine.add_rule(FirewallRule(
+                id=f"hardening_{name.replace(' ', '_').lower()}",
+                name=name,
+                action=action,
+                direction=direction,
+                protocol=proto,
+                src_ip=src_ip,
+                dst_ip=dst_ip,
+                src_port=src_port,
+                dst_port=dst_port,
+                priority=prio,
+                description=desc
             ))
         
         if "Block HTTP Port 80" not in existing:
@@ -123,7 +254,7 @@ class EnhancedFirewall:
                 direction=RuleDirection.OUTBOUND,
                 protocol=Protocol.TCP,
                 dst_port=80,
-                priority=2,
+                priority=200,
                 description="Demo: Block outbound HTTP so you can verify blocking"
             ))
 
@@ -149,48 +280,62 @@ class EnhancedFirewall:
             message="Enhanced Firewall stopped"
         ))
 
-    def process_packet(self, packet_info: PacketInfo) -> bool:
-        """Process a packet through all modules"""
+    def process_packet(self, packet_info: PacketInfo) -> tuple[bool, dict]:
+        """Process a packet through rules, stateful inspection, and policy."""
         try:
             self.stats['packets_processed'] += 1
-            
+
             # Stateful inspection
-            should_allow, connection_state, connection = self.stateful_inspector.inspect_packet(packet_info)
-            
+            stateful_allow, connection_state, connection = self.stateful_inspector.inspect_packet(packet_info)
             if connection:
                 self.stats['connections_tracked'] += 1
-            
+
             # Rule engine evaluation
             rule_allow, matching_rule = self.rule_engine.evaluate_packet(packet_info)
             self.stats['rules_evaluated'] += 1
-            
-            # Policy evaluation
+
+            # Policy evaluation (optional)
             policy_actions = self.policy_manager.evaluate_policies(packet_info)
-            
+
             # Final decision
-            final_decision = should_allow and rule_allow
-            
-            # Log the decision
+            if matching_rule:
+                final_decision = rule_allow
+                decision_source = 'rule'
+            elif connection_state is not None:
+                final_decision = stateful_allow
+                decision_source = 'stateful'
+            else:
+                # Default DENY/ALLOW
+                final_decision = (self.rule_engine.default_action == RuleAction.ALLOW)
+                decision_source = 'default'
+
+            # Prepare match info for logging
+            match_info = {
+                'rule_name': getattr(matching_rule, 'name', None),
+                'rule_id': getattr(matching_rule, 'id', None),
+                'default_action': self.rule_engine.default_action.value if decision_source == 'default' else None,
+                'connection_state': connection_state.value if connection_state else None,
+                'decision_source': decision_source,
+            }
+
+            # Log packet
             if final_decision:
                 self.stats['packets_allowed'] += 1
-                self.logger.log_packet_allowed(
-                    packet_info.src_ip, packet_info.dst_ip, packet_info.protocol,
-                    matching_rule.id if matching_rule else None
-                )
+                reason_text = match_info['rule_name'] or match_info.get('connection_state') or match_info.get('default_action')
+                self.logger.log_packet_allowed(packet_info.src_ip, packet_info.dst_ip, packet_info.protocol, reason=reason_text)
             else:
                 self.stats['packets_blocked'] += 1
-                self.logger.log_packet_blocked(
-                    packet_info.src_ip, packet_info.dst_ip, packet_info.protocol,
-                    "Rule match" if matching_rule else "Default policy",
-                    matching_rule.id if matching_rule else None
-                )
-            
-            return final_decision
-            
+                reason_text = "Rule match" if matching_rule else "Default policy"
+                if match_info.get('rule_name') or match_info.get('connection_state'):
+                    reason_text += f" ({match_info.get('rule_name') or match_info.get('connection_state')})"
+                self.logger.log_packet_blocked(packet_info.src_ip, packet_info.dst_ip, packet_info.protocol, reason=reason_text)
+
+            return final_decision, match_info
+
         except Exception as e:
             self.log_callback(f"Error processing packet: {e}")
             self.logger.log_security_alert(f"Packet processing error: {e}")
-            return False
+            return False, {}
 
     def get_statistics(self):
         """Get firewall statistics"""
@@ -215,6 +360,12 @@ class EnhancedFirewallGUI:
         self.firewall = EnhancedFirewall(self.log_message)
         self.thread = None
         self.capture_thread = None
+        self.metrics_history = []
+        
+        self.auto_refresh_thread = None
+        self.auto_refresh_running = False
+        self.refresh_interval = 2  # Default 2 seconds like real firewalls
+        self.last_refresh_time = None
 
         # Create notebook for tabs
         self.notebook = ttk.Notebook(root)
@@ -226,6 +377,18 @@ class EnhancedFirewallGUI:
         self._create_monitoring_tab()
         self._create_logs_tab()
         self._create_configuration_tab()
+
+    def _insert_text(self, widget, text):
+        """Temporarily enable widget, insert text, then disable it again."""
+        widget.config(state=tk.NORMAL)
+        widget.insert(tk.END, text)
+        widget.config(state=tk.DISABLED)
+
+    def _clear_text(self, widget):
+        """Temporarily enable widget, clear it, then disable it again."""
+        widget.config(state=tk.NORMAL)
+        widget.delete(1.0, tk.END)
+        widget.config(state=tk.DISABLED)
 
     def _create_dashboard_tab(self):
         """Create main dashboard tab"""
@@ -244,6 +407,9 @@ class EnhancedFirewallGUI:
 
         self.stats_btn = ttk.Button(control_frame, text="Refresh Stats", command=self.refresh_stats)
         self.stats_btn.pack(side=tk.LEFT, padx=5)
+        
+        self.auto_refresh_btn = ttk.Button(control_frame, text="Enable Auto-Refresh", command=self.toggle_auto_refresh)
+        self.auto_refresh_btn.pack(side=tk.LEFT, padx=5)
 
         # Status display
         status_frame = ttk.LabelFrame(dashboard_frame, text="Status")
@@ -251,19 +417,35 @@ class EnhancedFirewallGUI:
 
         self.status_label = ttk.Label(status_frame, text="Firewall: Stopped", font=("Arial", 12, "bold"))
         self.status_label.pack(pady=5)
+        
+        refresh_status_frame = ttk.Frame(status_frame)
+        refresh_status_frame.pack(fill=tk.X, padx=5, pady=5)
+        
+        ttk.Label(refresh_status_frame, text="Auto-Refresh: OFF", font=("Arial", 10)).pack(side=tk.LEFT, padx=5)
+        self.refresh_status_label = ttk.Label(refresh_status_frame, text="", font=("Arial", 10, "italic"))
+        self.refresh_status_label.pack(side=tk.LEFT, padx=5)
+        
+        # Refresh interval control
+        interval_frame = ttk.Frame(status_frame)
+        interval_frame.pack(fill=tk.X, padx=5, pady=5)
+        ttk.Label(interval_frame, text="Refresh Interval (seconds):").pack(side=tk.LEFT, padx=5)
+        self.interval_var = tk.StringVar(value="2")
+        interval_spinbox = ttk.Spinbox(interval_frame, from_=1, to=10, textvariable=self.interval_var, width=5)
+        interval_spinbox.pack(side=tk.LEFT, padx=5)
+        ttk.Button(interval_frame, text="Apply", command=self.apply_refresh_interval).pack(side=tk.LEFT, padx=5)
 
         # Statistics display
         stats_frame = ttk.LabelFrame(dashboard_frame, text="Statistics")
         stats_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=5)
 
-        self.stats_text = scrolledtext.ScrolledText(stats_frame, height=15, width=80)
+        self.stats_text = scrolledtext.ScrolledText(stats_frame, height=15, width=80, state=tk.DISABLED)
         self.stats_text.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
 
         # Activity log
         log_frame = ttk.LabelFrame(dashboard_frame, text="Activity Log")
         log_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=5)
 
-        self.log_text = scrolledtext.ScrolledText(log_frame, height=10, width=80)
+        self.log_text = scrolledtext.ScrolledText(log_frame, height=10, width=80, state=tk.DISABLED)
         self.log_text.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
 
     def _create_rules_tab(self):
@@ -283,26 +465,26 @@ class EnhancedFirewallGUI:
         metrics_frame = ttk.LabelFrame(monitor_frame, text="Real-time Metrics")
         metrics_frame.pack(fill=tk.X, padx=10, pady=5)
 
-        self.metrics_text = scrolledtext.ScrolledText(metrics_frame, height=10, width=80)
+        self.metrics_text = scrolledtext.ScrolledText(metrics_frame, height=10, width=80, state=tk.DISABLED)
         self.metrics_text.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
 
         # Connection monitoring
         conn_frame = ttk.LabelFrame(monitor_frame, text="Active Connections")
         conn_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=5)
 
-        self.connections_text = scrolledtext.ScrolledText(conn_frame, height=15, width=80)
+        self.connections_text = scrolledtext.ScrolledText(conn_frame, height=15, width=80, state=tk.DISABLED)
         self.connections_text.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
 
         # Refresh button
         ttk.Button(monitor_frame, text="Refresh Monitoring", command=self.refresh_monitoring).pack(pady=5)
+        self.hostname_cache = {}
 
     def _create_logs_tab(self):
         """Create logs tab"""
         logs_frame = ttk.Frame(self.notebook)
         self.notebook.add(logs_frame, text="Logs")
 
-        # Log display
-        self.logs_text = scrolledtext.ScrolledText(logs_frame, height=25, width=100)
+        self.logs_text = scrolledtext.ScrolledText(logs_frame, height=25, width=100, state=tk.DISABLED)
         self.logs_text.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
 
         # Log controls
@@ -329,121 +511,226 @@ class EnhancedFirewallGUI:
         timestamp = datetime.now().strftime("%H:%M:%S")
         # Check if log_text widget exists before trying to use it
         if hasattr(self, 'log_text') and self.log_text:
-            self.log_text.insert(tk.END, f"[{timestamp}] {message}\n")
+            self._insert_text(self.log_text, f"[{timestamp}] {message}\n")
             self.log_text.see(tk.END)
         else:
             # Fallback to console output during initialization
             print(f"[{timestamp}] {message}")
 
     def start_firewall(self):
-        """Start the firewall"""
+        """Start firewall in a background thread."""
         if self.thread and self.thread.is_alive():
             messagebox.showinfo("Info", "Firewall already running.")
             return
-        
-        # Start firewall in a separate thread
+
         self.thread = threading.Thread(target=self.firewall.start, daemon=True)
         self.thread.start()
         self.status_label.config(text="Firewall: Running", foreground="green")
 
     def stop_firewall(self):
-        """Stop the firewall"""
+        """Stop the firewall safely."""
         self.firewall.stop()
         self.status_label.config(text="Firewall: Stopped", foreground="red")
+        self.stop_auto_refresh()
+
+    def toggle_auto_refresh(self):
+        """Toggle auto-refresh on/off"""
+        if self.auto_refresh_running:
+            self.stop_auto_refresh()
+        else:
+            self.start_auto_refresh()
+
+    def start_auto_refresh(self):
+        """Start automatic refresh thread"""
+        if self.auto_refresh_running:
+            messagebox.showinfo("Info", "Auto-refresh already running.")
+            return
+        
+        self.auto_refresh_running = True
+        self.auto_refresh_btn.config(text="Disable Auto-Refresh")
+        self.log_message(f"Auto-refresh started (interval: {self.refresh_interval}s)")
+        
+        self.auto_refresh_thread = threading.Thread(target=self._auto_refresh_loop, daemon=True)
+        self.auto_refresh_thread.start()
+
+    def stop_auto_refresh(self):
+        """Stop automatic refresh thread"""
+        if not self.auto_refresh_running:
+            return
+        
+        self.auto_refresh_running = False
+        self.auto_refresh_btn.config(text="Enable Auto-Refresh")
+        self.log_message("Auto-refresh stopped")
+        
+        # Wait for thread to finish
+        if self.auto_refresh_thread and self.auto_refresh_thread.is_alive():
+            self.auto_refresh_thread.join(timeout=2)
+
+    def apply_refresh_interval(self):
+        """Apply new refresh interval"""
+        try:
+            new_interval = int(self.interval_var.get())
+            if new_interval < 1 or new_interval > 10:
+                messagebox.showerror("Error", "Interval must be between 1 and 10 seconds")
+                return
+            self.refresh_interval = new_interval
+            self.log_message(f"Refresh interval changed to {self.refresh_interval}s")
+        except ValueError:
+            messagebox.showerror("Error", "Invalid interval value")
+
+    def _auto_refresh_loop(self):
+        """Background thread that automatically refreshes data"""
+        while self.auto_refresh_running:
+            try:
+                # Refresh all sections
+                self.refresh_stats()
+                self.refresh_monitoring()
+                self.refresh_logs()
+                
+                # Update last refresh time
+                self.last_refresh_time = datetime.now().strftime("%H:%M:%S")
+                self.refresh_status_label.config(text=f"Last updated: {self.last_refresh_time}")
+                
+                # Wait for the specified interval
+                time.sleep(self.refresh_interval)
+            except Exception as e:
+                self.log_message(f"Auto-refresh error: {e}")
+                time.sleep(1)  # Wait before retrying
 
     def refresh_stats(self):
         """Refresh statistics display"""
         try:
             stats = self.firewall.get_statistics()
             
-            self.stats_text.delete(1.0, tk.END)
-            self.stats_text.insert(tk.END, "=== FIREWALL STATISTICS ===\n\n")
+            self._clear_text(self.stats_text)
+            self._insert_text(self.stats_text, "=== FIREWALL STATISTICS ===\n\n")
             
             # Firewall stats
-            self.stats_text.insert(tk.END, "Firewall Statistics:\n")
+            self._insert_text(self.stats_text, "Firewall Statistics:\n")
             for key, value in stats['firewall_stats'].items():
-                self.stats_text.insert(tk.END, f"  {key}: {value}\n")
+                self._insert_text(self.stats_text, f"  {key}: {value}\n")
             
             # Capture stats
-            self.stats_text.insert(tk.END, "\nPacket Capture Statistics:\n")
+            self._insert_text(self.stats_text, "\nPacket Capture Statistics:\n")
             for key, value in stats['capture_stats'].items():
-                self.stats_text.insert(tk.END, f"  {key}: {value}\n")
+                self._insert_text(self.stats_text, f"  {key}: {value}\n")
             
             # Rule stats
-            self.stats_text.insert(tk.END, "\nRule Engine Statistics:\n")
+            self._insert_text(self.stats_text, "\nRule Engine Statistics:\n")
             for key, value in stats['rule_stats'].items():
-                self.stats_text.insert(tk.END, f"  {key}: {value}\n")
+                self._insert_text(self.stats_text, f"  {key}: {value}\n")
             
             # Connection stats
-            self.stats_text.insert(tk.END, "\nConnection Statistics:\n")
+            self._insert_text(self.stats_text, "\nConnection Statistics:\n")
             for key, value in stats['connection_stats'].items():
-                self.stats_text.insert(tk.END, f"  {key}: {value}\n")
+                self._insert_text(self.stats_text, f"  {key}: {value}\n")
             
             # Log stats
-            self.stats_text.insert(tk.END, "\nLogging Statistics:\n")
+            self._insert_text(self.stats_text, "\nLogging Statistics:\n")
             for key, value in stats['log_stats'].items():
-                self.stats_text.insert(tk.END, f"  {key}: {value}\n")
+                self._insert_text(self.stats_text, f"  {key}: {value}\n")
             
             # Monitor stats
-            self.stats_text.insert(tk.END, "\nMonitoring Statistics:\n")
+            self._insert_text(self.stats_text, "\nMonitoring Statistics:\n")
             for key, value in stats['monitor_stats'].items():
-                self.stats_text.insert(tk.END, f"  {key}: {value}\n")
+                self._insert_text(self.stats_text, f"  {key}: {value}\n")
             
             # Add timestamp
             from datetime import datetime
             timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            self.stats_text.insert(tk.END, f"\n\nLast updated: {timestamp}\n")
+            self._insert_text(self.stats_text, f"\n\nLast updated: {timestamp}\n")
                 
         except Exception as e:
             self.log_message(f"Error refreshing stats: {e}")
             # Show error in stats
-            self.stats_text.delete(1.0, tk.END)
-            self.stats_text.insert(tk.END, f"Error loading statistics: {e}\n")
-            self.stats_text.insert(tk.END, "Make sure the firewall is running and try again.")
+            self._clear_text(self.stats_text)
+            self._insert_text(self.stats_text, f"Error loading statistics: {e}\n")
+            self._insert_text(self.stats_text, "Make sure the firewall is running and try again.")
 
     def refresh_monitoring(self):
         """Refresh monitoring display"""
         try:
-            # Get metrics
+            # Get metrics (base)
             metrics = self.firewall.monitor.get_metrics()
             
-            self.metrics_text.delete(1.0, tk.END)
-            self.metrics_text.insert(tk.END, "=== REAL-TIME METRICS ===\n\n")
+            # Compute 5s moving averages from stateful inspector
+            from datetime import datetime, timedelta
+            now = datetime.now()
+            connections = self.firewall.stateful_inspector.get_all_connections()
+            active_count = len(connections)
+            new_in_5s = sum(1 for c in connections if (now - c.first_seen) <= timedelta(seconds=5))
+            connections_per_sec_5s = round(new_in_5s / 5, 2)
             
+            self._clear_text(self.metrics_text)
+            self._insert_text(self.metrics_text, "=== REAL-TIME METRICS ===\n\n")
+            
+            # Show base metrics except ones we replace with smoothed values
             for key, value in metrics.items():
-                self.metrics_text.insert(tk.END, f"{key}: {value}\n")
+                if key in ("active_connections", "connections_per_second"):
+                    continue
+                self._insert_text(self.metrics_text, f"{key}: {value}\n")
+            
+            # Add smoothed metrics
+            self._insert_text(self.metrics_text, f"active_connections: {active_count}\n")
+            self._insert_text(self.metrics_text, f"connections_per_second(5s_avg): {connections_per_sec_5s}\n")
             
             # Get connections
             connections = self.firewall.stateful_inspector.get_all_connections()
+            # Optionally resolve hostnames for display
+            resolve = False
+            try:
+                resolve = bool(getattr(self.firewall.config_manager.get_config(), 'resolve_hostnames', False))
+            except Exception:
+                resolve = False
             
-            self.connections_text.delete(1.0, tk.END)
-            self.connections_text.insert(tk.END, "=== ACTIVE CONNECTIONS ===\n\n")
+            def resolve_ip(ip: str) -> str:
+                if not resolve:
+                    return ip
+                if ip in self.hostname_cache:
+                    return f"{self.hostname_cache[ip]} ({ip})"
+                try:
+                    import socket
+                    from concurrent.futures import ThreadPoolExecutor
+                    def _lookup():
+                        return socket.gethostbyaddr(ip)[0]
+                    with ThreadPoolExecutor(max_workers=1) as ex:
+                        fut = ex.submit(_lookup)
+                        name = fut.result(timeout=0.2)
+                    self.hostname_cache[ip] = name
+                    return f"{name} ({ip})"
+                except Exception:
+                    self.hostname_cache[ip] = ip
+                    return ip
+            
+            self._clear_text(self.connections_text)
+            self._insert_text(self.connections_text, "=== ACTIVE CONNECTIONS ===\n\n")
             
             if connections:
                 for conn in connections[-20:]:  # Show last 20 connections
-                    self.connections_text.insert(tk.END, 
-                        f"{conn.src_ip}:{conn.src_port} -> {conn.dst_ip}:{conn.dst_port} "
-                        f"({conn.protocol}) - {conn.state.value}\n"
+                    src = f"{resolve_ip(conn.src_ip)}:{conn.src_port}" if conn.src_port else resolve_ip(conn.src_ip)
+                    dst = f"{resolve_ip(conn.dst_ip)}:{conn.dst_port}" if conn.dst_port else resolve_ip(conn.dst_ip)
+                    self._insert_text(self.connections_text,
+                        f"{src} -> {dst} ({conn.protocol}) - {conn.state.value}\n"
                     )
             else:
                 # Show some sample connections if none exist
-                self.connections_text.insert(tk.END, "No active connections found.\n\n")
-                self.connections_text.insert(tk.END, "To see connections:\n")
-                self.connections_text.insert(tk.END, "1. Start the firewall\n")
-                self.connections_text.insert(tk.END, "2. Open web browser and visit websites\n")
-                self.connections_text.insert(tk.END, "3. Run 'ping google.com' in command prompt\n")
-                self.connections_text.insert(tk.END, "4. Refresh this page\n\n")
-                self.connections_text.insert(tk.END, "Sample connections you should see:\n")
-                self.connections_text.insert(tk.END, "192.168.1.100:1234 -> 8.8.8.8:53 (UDP) - ESTABLISHED\n")
-                self.connections_text.insert(tk.END, "192.168.1.100:1235 -> google.com:443 (TCP) - ESTABLISHED\n")
-                self.connections_text.insert(tk.END, "192.168.1.100:1236 -> youtube.com:80 (TCP) - ESTABLISHED\n")
+                self._insert_text(self.connections_text, "No active connections found.\n\n")
+                self._insert_text(self.connections_text, "To see connections:\n")
+                self._insert_text(self.connections_text, "1. Start the firewall\n")
+                self._insert_text(self.connections_text, "2. Open web browser and visit websites\n")
+                self._insert_text(self.connections_text, "3. Run 'ping google.com' in command prompt\n")
+                self._insert_text(self.connections_text, "4. Refresh this page\n\n")
+                self._insert_text(self.connections_text, "Sample connections you should see:\n")
+                self._insert_text(self.connections_text, "192.168.1.100:1234 -> 8.8.8.8:53 (UDP) - ESTABLISHED\n")
+                self._insert_text(self.connections_text, "192.168.1.100:1235 -> google.com:443 (TCP) - ESTABLISHED\n")
+                self._insert_text(self.connections_text, "192.168.1.100:1236 -> youtube.com:80 (TCP) - ESTABLISHED\n")
                 
         except Exception as e:
             self.log_message(f"Error refreshing monitoring: {e}")
             # Show error in connections
-            self.connections_text.delete(1.0, tk.END)
-            self.connections_text.insert(tk.END, f"Error loading connections: {e}\n")
-            self.connections_text.insert(tk.END, "Make sure the firewall is running and try again.")
+            self._clear_text(self.connections_text)
+            self._insert_text(self.connections_text, f"Error loading connections: {e}\n")
+            self._insert_text(self.connections_text, "Make sure the firewall is running and try again.")
 
     def refresh_logs(self):
         """Refresh logs display"""
@@ -451,32 +738,32 @@ class EnhancedFirewallGUI:
             # Get recent events
             events = self.firewall.logger.get_recent_events(100)
             
-            self.logs_text.delete(1.0, tk.END)
-            self.logs_text.insert(tk.END, "=== RECENT LOG EVENTS ===\n\n")
+            self._clear_text(self.logs_text)
+            self._insert_text(self.logs_text, "=== RECENT LOG EVENTS ===\n\n")
             
             if events:
                 for event in events:
                     timestamp = event.timestamp.strftime("%Y-%m-%d %H:%M:%S")
-                    self.logs_text.insert(tk.END, f"[{timestamp}] {event.level} - {event.message}\n")
+                    self._insert_text(self.logs_text, f"[{timestamp}] {event.level} - {event.message}\n")
             else:
                 # Show activity log content if no events
-                self.logs_text.insert(tk.END, "No log events found. Showing activity log:\n\n")
+                self._insert_text(self.logs_text, "No log events found. Showing activity log:\n\n")
                 activity_content = self.log_text.get(1.0, tk.END)
                 if activity_content.strip():
-                    self.logs_text.insert(tk.END, activity_content)
+                    self._insert_text(self.logs_text, activity_content)
                 else:
-                    self.logs_text.insert(tk.END, "No activity logged yet. Start the firewall and generate network traffic.\n")
+                    self._insert_text(self.logs_text, "No activity logged yet. Start the firewall and generate network traffic.\n")
                 
         except Exception as e:
             self.log_message(f"Error refreshing logs: {e}")
             # Show error in logs
-            self.logs_text.delete(1.0, tk.END)
-            self.logs_text.insert(tk.END, f"Error loading logs: {e}\n")
-            self.logs_text.insert(tk.END, "Make sure the firewall is running and try again.")
+            self._clear_text(self.logs_text)
+            self._insert_text(self.logs_text, f"Error loading logs: {e}\n")
+            self._insert_text(self.logs_text, "Make sure the firewall is running and try again.")
 
     def clear_logs(self):
         """Clear logs display"""
-        self.logs_text.delete(1.0, tk.END)
+        self._clear_text(self.logs_text)
 
     def export_logs(self):
         """Export logs to file"""
@@ -498,6 +785,6 @@ if __name__ == "__main__":
     root = tk.Tk()
     gui = EnhancedFirewallGUI(root)
     try:
-     root.mainloop()
+        root.mainloop()
     except KeyboardInterrupt:
-     print("Firewall stopped by user.")
+        print("Firewall stopped by user.")
