@@ -25,6 +25,7 @@ from pathlib import Path
 from datetime import datetime
 import json
 import pandas as pd
+import matplotlib.dates as mdates
 from PIL import Image, ImageTk
 # ---- Configuration defaults ----
 DEFAULT_LOG_DIR = Path("logs")
@@ -246,12 +247,14 @@ def load_logs_to_dataframe(log_dir=DEFAULT_LOG_DIR, files=None):
 # ---- Aggregation / metrics ----
 def aggregate_metrics(df: pd.DataFrame, period: str = "daily"):
     """
+    Aggregate firewall logs for reporting.
+    
     period: 'daily' or 'weekly'
     Returns a dict of aggregated metrics and dataframes used for graphs.
     Metrics include:
       - total_events
       - total_bytes
-      - events_per_hour/day
+      - events per day/week (time_series)
       - top_src (by events)
       - top_dst
       - top_blocked (action == 'BLOCK' or 'DROP' heuristics)
@@ -259,37 +262,54 @@ def aggregate_metrics(df: pd.DataFrame, period: str = "daily"):
     """
     if df.empty:
         return {"summary": {}, "dataframes": {}}
-    # normalize action uppercase
+
+    # Normalize actions and detect blocks
     df["action_norm"] = df["action"].fillna("").str.upper()
-    # detect block-like actions
     df["is_block"] = df["action_norm"].isin({"BLOCK", "DROP", "DENY", "REJECT"})
-    # choose resample rule
+
+    now = datetime.utcnow()
+
     if period == "daily":
-        # group by date and hour for more detail: hourly series across last 24 hours/days
+        start_date = now - timedelta(days=30)
+        df = df[df["timestamp"] >= start_date]
         df["date"] = df["timestamp"].dt.date
-        # events per day
-        events_per_day = df.groupby("date").size().rename("events").reset_index()
-        bytes_per_day = df.groupby("date")["bytes"].sum().rename("bytes").reset_index()
+
+        # Create full date range
+        full_dates = pd.date_range(start=start_date.date(), end=now.date(), freq='D')
+        events_per_day = df.groupby("date").size().rename("events").reindex(full_dates, fill_value=0).reset_index()
+        events_per_day.rename(columns={"index": "date"}, inplace=True)
+        bytes_per_day = df.groupby("date")["bytes"].sum().reindex(full_dates, fill_value=0).reset_index()
+        bytes_per_day.rename(columns={"index": "date"}, inplace=True)
         time_series = pd.merge(events_per_day, bytes_per_day, on="date")
+
     elif period == "weekly":
-        # define week start (Monday)
+        start_date = now - timedelta(weeks=12)
+        df = df[df["timestamp"] >= start_date]
         df["week"] = df["timestamp"].dt.to_period("W").apply(lambda r: r.start_time.date())
-        events_per_week = df.groupby("week").size().rename("events").reset_index()
-        bytes_per_week = df.groupby("week")["bytes"].sum().rename("bytes").reset_index()
+
+        # Create full week range (start Mondays)
+        full_weeks = pd.date_range(start=start_date, end=now, freq='W-MON').date
+        events_per_week = df.groupby("week").size().reindex(full_weeks, fill_value=0).rename("events").reset_index()
+        events_per_week.rename(columns={"index": "week"}, inplace=True)
+        bytes_per_week = df.groupby("week")["bytes"].sum().reindex(full_weeks, fill_value=0).reset_index()
+        bytes_per_week.rename(columns={"index": "week"}, inplace=True)
         time_series = pd.merge(events_per_week, bytes_per_week, on="week")
+
     else:
         raise ValueError("period must be 'daily' or 'weekly'")
 
-    # top talkers
+    # Top talkers
     top_src = df.groupby("src_ip").size().rename("events").reset_index().sort_values("events", ascending=False).head(10)
     top_dst = df.groupby("dst_ip").size().rename("events").reset_index().sort_values("events", ascending=False).head(10)
 
-    # top blocked IPs
+    # Top blocked
     blocked = df[df["is_block"]]
     top_blocked_src = blocked.groupby("src_ip").size().rename("blocked_events").reset_index().sort_values("blocked_events", ascending=False).head(10)
-    # top rules
+
+    # Top rules
     top_rules = df.groupby("rule_id").size().rename("hits").reset_index().sort_values("hits", ascending=False).head(20)
 
+    # Summary
     summary = {
         "total_events": int(len(df)),
         "total_bytes": int(df["bytes"].sum()),
@@ -305,28 +325,62 @@ def aggregate_metrics(df: pd.DataFrame, period: str = "daily"):
         "top_blocked_src": top_blocked_src,
         "top_rules": top_rules,
     }
+
     return {"summary": summary, "dataframes": dataframes}
 
+
 # ---- Graph generation ----
+
+
 def save_plot_from_series(series_df: pd.DataFrame, x_col: str, y_cols: list, title: str, out_path: Path):
-    """
-    Basic plot routine. y_cols is a list (one or more series columns).
-    Uses matplotlib; does not set colors (per your style rules).
-    """
     if series_df.empty:
         return None
-    plt.figure(figsize=(10, 5))
-    for y in y_cols:
-        plt.plot(series_df[x_col], series_df[y], label=y)
-    plt.xlabel(x_col)
-    plt.ylabel(", ".join(y_cols))
-    plt.title(title)
-    plt.legend()
-    plt.tight_layout()
+
+    # Ensure numbers
+    series_df[y_cols] = series_df[y_cols].apply(pd.to_numeric, errors='coerce').fillna(0)
+    series_df[x_col] = pd.to_datetime(series_df[x_col], errors='coerce')
+
+    # ---- AUTO SCALE BYTES ----
+    byte_col = y_cols[1] if len(y_cols) > 1 else None
+    unit = "Bytes"
+    if byte_col:
+        max_val = series_df[byte_col].max()
+        if max_val > 1024**3:
+            series_df[byte_col] = series_df[byte_col] / (1024**3)
+            unit = "GB"
+        elif max_val > 1024**2:
+            series_df[byte_col] = series_df[byte_col] / (1024**2)
+            unit = "MB"
+        elif max_val > 1024:
+            series_df[byte_col] = series_df[byte_col] / 1024
+            unit = "KB"
+
+    # Create directory if missing
     out_path.parent.mkdir(parents=True, exist_ok=True)
+
+    fig, ax1 = plt.subplots(figsize=(10, 5))
+
+    # Plot events
+    ax1.plot(series_df[x_col], series_df[y_cols[0]], marker='o', label=y_cols[0])
+    ax1.set_xlabel("Date")
+    ax1.set_ylabel("Events", color='blue')
+    ax1.tick_params(axis='y', labelcolor='blue')
+
+    # Plot bytes on second axis
+    if byte_col:
+        ax2 = ax1.twinx()
+        ax2.plot(series_df[x_col], series_df[byte_col], marker='o', label=byte_col, linestyle='--')
+        ax2.set_ylabel(f"Data ({unit})", color='orange')
+        ax2.tick_params(axis='y', labelcolor='orange')
+
+    plt.title(title)
+    fig.autofmt_xdate()
+    fig.tight_layout()
     plt.savefig(out_path)
     plt.close()
     return out_path
+
+
 
 def save_bar_from_df(df: pd.DataFrame, index_col: str, value_col: str, title: str, out_path: Path, top_n=10):
     if df.empty:

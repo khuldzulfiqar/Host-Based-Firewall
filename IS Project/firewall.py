@@ -1073,14 +1073,22 @@ if __name__ == "__main__":
         print(f"Logged in as: {role.upper()}")
 
         # Step 2: Initialize GUI
-        root = tk.Tk()
-        gui = EnhancedFirewallGUI(root, role)
-
-        # Step 3: Start GUI loop
         try:
+            root = tk.Tk()
+            gui = EnhancedFirewallGUI(root, role)
+
+            # Step 3: Start GUI loop
             root.mainloop()
-            # If we reach here, user logged out - loop back to login
+            
+            # If we reach here naturally (after root.quit()), user logged out
+            # Clean up any remaining window references
+            try:
+                root.destroy()
+            except:
+                pass
+            
             print("Returning to login screen...")
+            
         except KeyboardInterrupt:
             print("Firewall stopped by user.")
             break
@@ -1088,4 +1096,12 @@ if __name__ == "__main__":
             print(f"Error: {e}")
             import traceback
             traceback.print_exc()
-            break
+            # Ask if user wants to try again
+            retry_root = tk.Tk()
+            retry_root.withdraw()
+            if not messagebox.askyesno("Error", "An error occurred. Return to login?"):
+                retry_root.destroy()
+                break
+            retry_root.destroy()
+    
+    print("Application closed.")
