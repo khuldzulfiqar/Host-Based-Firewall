@@ -15,6 +15,7 @@ from configuration_policy import ConfigurationManager, PolicyManager
 from firewall_reporting import generate_report
 import tkinter.messagebox as messagebox
 # ---------- Enhanced Firewall with All Modules ----------
+
 class EnhancedFirewall:
     def __init__(self, log_callback):
         self.running = False
@@ -481,10 +482,10 @@ class EnhancedFirewall:
             'monitor_stats': self.monitor.get_metrics()
         }
 
-
 # ---------- Enhanced GUI Frontend ----------
+
 class EnhancedFirewallGUI:
-    def __init__(self, root):
+    def __init__(self, root, user_role):
         self.root = root
         self.root.title("Enhanced Host-Based Firewall")
         self.root.geometry("1200x800")
@@ -499,6 +500,7 @@ class EnhancedFirewallGUI:
         self.auto_refresh_running = False
         self.refresh_interval = 2  # Default 2 seconds like real firewalls
         self.last_refresh_time = None
+        self.user_role = user_role  # will be set after login
 
         # Create notebook for tabs
         self.notebook = ttk.Notebook(root)
@@ -595,7 +597,7 @@ class EnhancedFirewallGUI:
         log_frame = ttk.LabelFrame(dashboard_frame, text="Activity Log")
         log_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=5)
 
-        self.log_text = scrolledtext.ScrolledText(log_frame, height=10, width=80, state=tk.DISABLED)
+        self.log_text = scrolledtext.ScrolledText(log_frame, height=25, width=80, state=tk.DISABLED)
         self.log_text.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
 
     def _create_rules_tab(self):
@@ -605,6 +607,31 @@ class EnhancedFirewallGUI:
 
         # Create rule management GUI
         self.rule_manager_gui = self.firewall.rule_manager.show_gui(rules_frame)
+        
+        if self.user_role and self.user_role != "admin":
+            try:
+                # Find and disable all buttons in rule_manager_gui
+                self._disable_buttons_in_frame(rules_frame, ["add", "delete", "edit", "update", "remove"])
+            except Exception as e:
+                self.log_message(f"Error disabling rule buttons: {e}")
+
+    def _disable_buttons_in_frame(self, parent_frame, button_keywords):
+        """Recursively disable buttons in a frame that match keywords"""
+        for widget in parent_frame.winfo_children():
+            try:
+                # Check if it's a button
+                if isinstance(widget, ttk.Button) or isinstance(widget, tk.Button):
+                    button_text = str(widget.cget("text")).lower()
+                    # Disable if button text contains any of the keywords
+                    if any(keyword in button_text for keyword in button_keywords):
+                        widget.config(state="disabled")
+                        self.log_message(f"Disabled button: {button_text}")
+                
+                # Recursively check child frames
+                if hasattr(widget, 'winfo_children'):
+                    self._disable_buttons_in_frame(widget, button_keywords)
+            except Exception as e:
+                pass
 
     def _create_monitoring_tab(self):
         """Create monitoring tab"""
@@ -998,9 +1025,36 @@ class EnhancedFirewallGUI:
 
 
 # ---------- Main ----------
+
 if __name__ == "__main__":
+    import tkinter as tk
+    from auth_system import login  # uses the updated login function with RBAC
+
+    # Step 1: Authenticate user
+    role = login()  # login() returns 'admin' or 'user'
+    print(f"Logged in as: {role.upper()}")
+
+    # Step 2: Initialize GUI
     root = tk.Tk()
-    gui = EnhancedFirewallGUI(root)
+    gui = EnhancedFirewallGUI(root, role)
+
+    # Step 3: Apply role-based access control
+    if role != "admin":
+        print("⚠️ Limited access: view-only mode for guest/user")
+        try:
+            # Disable admin-only buttons if they exist
+            admin_buttons = [
+                getattr(gui, "add_rule_button", None),
+                getattr(gui, "delete_rule_button", None),
+                getattr(gui, "update_rule_button", None)
+            ]
+            for btn in admin_buttons:
+                if btn:
+                    btn.config(state="disabled")
+        except Exception as e:
+            print(f"⚠️ Error applying role restrictions: {e}")
+
+    # Step 4: Start GUI loop
     try:
         root.mainloop()
     except KeyboardInterrupt:

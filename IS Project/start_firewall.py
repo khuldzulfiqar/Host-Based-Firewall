@@ -8,6 +8,46 @@ import sys
 import os
 import traceback
 
+<<<<<<< HEAD
+# 🔐 Import authentication system
+from auth_system import authenticate_user, ensure_default_users, change_password
+
+def login():
+    """Login with role-based access and password change enforcement"""
+    ensure_default_users()
+    print("=== Firewall Login ===")
+    
+    while True:
+        username = input("Username: ")
+        password = input("Password: ")
+
+        success, message, user, role = authenticate_user(username, password)
+        print(message)
+
+        if success:
+            # Force password change if needed
+            if user.get("must_change_password", False):
+                print("⚠️ You must change your password on first login.")
+                new_pw = input("Enter new password: ")
+                confirm_pw = input("Confirm new password: ")
+                if new_pw != confirm_pw:
+                    print("❌ Passwords do not match. Try login again.")
+                    continue
+                change_password(username, new_pw)
+                print("✅ Password changed successfully. Please login again.")
+                continue  # ask for login again with new password
+
+            return user["role"]  # return role for RBAC
+        else:
+            # account locked
+            if user and user.get("locked", False):
+                input("Press Enter to exit...")
+                sys.exit(1)
+            # retry login
+            print("Try again.\n")
+
+=======
+>>>>>>> 752be40f2a8e6162abbd420c5915312dbe69f252
 def check_requirements():
     """Check if all required modules are available"""
     try:
@@ -80,10 +120,27 @@ def main():
         
         # Create main window
         root = tk.Tk()
+        gui = EnhancedFirewallGUI(root, role)
+
         
-        # Create and run GUI
-        gui = EnhancedFirewallGUI(root)
-        
+        gui.user_role = role
+
+        # ⚙️ Step 4: Apply role-based access control
+        if role != "admin":
+            print("⚠️ Limited access: You can only view logs and statistics.")
+            print("⚠️ Add, Edit, and Delete buttons are disabled for non-admin users.")
+            
+            # Disable configuration and policy modification tabs if they exist
+            try:
+                # Find and disable the Configuration tab
+                for i in range(gui.notebook.index("end")):
+                    tab_text = gui.notebook.tab(i, "text")
+                    if tab_text.lower() == "configuration":
+                        gui.notebook.tab(i, state="disabled")
+                        print("⚠️ Configuration tab disabled for non-admin users.")
+            except:
+                pass
+
         print("✓ Firewall GUI initialized successfully")
         print("✓ Application is ready to use")
         print("\nNote: Run as Administrator for full packet capture functionality")
