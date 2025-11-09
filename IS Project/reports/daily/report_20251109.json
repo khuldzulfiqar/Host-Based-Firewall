@@ -1,112 +1,102 @@
 {
-  "generated_at": "2025-11-09T19:11:42.237969",
+  "generated_at": "2025-11-09T21:46:35.895422",
   "period": "daily",
   "summary": {
-    "total_events": 51733,
+    "total_events": 76,
     "total_bytes": 0,
     "total_blocked": 0,
-    "unique_src": 182,
-    "unique_dst": 185
+    "unique_src": 10,
+    "unique_dst": 13
   },
   "time_series": [
     {
-      "date": "2025-10-30",
-      "events": 1952,
-      "bytes": 0
-    },
-    {
-      "date": "2025-11-08",
-      "events": 3,
-      "bytes": 0
-    },
-    {
-      "date": "2025-11-09",
-      "events": 49771,
+      "date": "2025-11-10",
+      "events": 76,
       "bytes": 0
     }
   ],
   "top_src": [
     {
-      "src_ip": "192.168.1.100",
-      "events": 20583
+      "src_ip": "192.168.1.104",
+      "events": 28
+    },
+    {
+      "src_ip": "192.168.1.102",
+      "events": 12
+    },
+    {
+      "src_ip": "192.168.1.107",
+      "events": 8
+    },
+    {
+      "src_ip": "142.250.202.228",
+      "events": 6
+    },
+    {
+      "src_ip": "104.18.39.21",
+      "events": 4
     },
     {
       "src_ip": "172.64.155.209",
-      "events": 5050
+      "events": 4
     },
     {
-      "src_ip": "192.168.0.125",
-      "events": 2724
-    },
-    {
-      "src_ip": "104.18.32.47",
-      "events": 2415
-    },
-    {
-      "src_ip": "192.168.0.104",
-      "events": 2404
+      "src_ip": "192.168.1.112",
+      "events": 4
     },
     {
       "src_ip": "192.168.1.1",
-      "events": 1345
+      "events": 4
     },
     {
-      "src_ip": "13.107.213.63",
-      "events": 816
+      "src_ip": "172.188.155.25",
+      "events": 2
     },
     {
-      "src_ip": "172.64.148.235",
-      "events": 658
-    },
-    {
-      "src_ip": "35.190.80.1",
-      "events": 644
-    },
-    {
-      "src_ip": "64.233.166.84",
-      "events": 611
+      "src_ip": "192.168.1.103",
+      "events": 2
     }
   ],
   "top_dst": [
     {
-      "dst_ip": "192.168.1.100",
-      "events": 18170
-    },
-    {
-      "dst_ip": "172.64.155.209",
-      "events": 5256
-    },
-    {
-      "dst_ip": "104.18.32.47",
-      "events": 2372
-    },
-    {
-      "dst_ip": "192.168.0.125",
-      "events": 2116
-    },
-    {
       "dst_ip": "224.0.0.251",
-      "events": 1806
+      "events": 20
+    },
+    {
+      "dst_ip": "192.168.1.104",
+      "events": 16
     },
     {
       "dst_ip": "224.0.0.252",
-      "events": 1792
+      "events": 8
     },
     {
       "dst_ip": "239.255.255.250",
-      "events": 1586
+      "events": 6
     },
     {
-      "dst_ip": "35.190.80.1",
-      "events": 1348
+      "dst_ip": "142.250.202.228",
+      "events": 6
     },
     {
-      "dst_ip": "192.168.0.255",
-      "events": 1024
+      "dst_ip": "172.64.155.209",
+      "events": 4
     },
     {
-      "dst_ip": "192.168.1.1",
-      "events": 830
+      "dst_ip": "172.188.155.25",
+      "events": 2
+    },
+    {
+      "dst_ip": "104.18.39.21",
+      "events": 2
+    },
+    {
+      "dst_ip": "142.251.38.42",
+      "events": 2
+    },
+    {
+      "dst_ip": "224.0.0.1",
+      "events": 2
     }
   ],
   "top_blocked_src": [],

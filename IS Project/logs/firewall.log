@@ -1,0 +1,76 @@
+2025-11-10 01:12:52,857 - firewall - INFO - Enhanced Firewall started successfully
+2025-11-10 01:12:55,470 - firewall - INFO - Packet allowed: 192.168.1.104 -> 142.251.38.42 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.1.104 | dst=142.251.38.42 | proto=TCP
+2025-11-10 01:12:55,573 - firewall - INFO - Packet allowed: 192.168.1.104 -> 142.251.38.42 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.1.104 | dst=142.251.38.42 | proto=TCP
+2025-11-10 01:12:56,378 - firewall - INFO - Packet allowed: 192.168.1.104 -> 224.0.0.252 (Protocol-2) - reason=UNTRACKED | src=192.168.1.104 | dst=224.0.0.252 | proto=Protocol-2
+2025-11-10 01:12:56,379 - firewall - INFO - Packet allowed: 192.168.1.104 -> 224.0.0.252 (Protocol-2) - reason=UNTRACKED | src=192.168.1.104 | dst=224.0.0.252 | proto=Protocol-2
+2025-11-10 01:12:56,380 - firewall - INFO - Packet allowed: 192.168.1.104 -> 224.0.0.252 (Protocol-2) - reason=UNTRACKED | src=192.168.1.104 | dst=224.0.0.252 | proto=Protocol-2
+2025-11-10 01:12:56,380 - firewall - INFO - Packet allowed: 192.168.1.104 -> 224.0.0.252 (Protocol-2) - reason=UNTRACKED | src=192.168.1.104 | dst=224.0.0.252 | proto=Protocol-2
+2025-11-10 01:12:56,682 - firewall - WARNING - Packet blocked: 192.168.1.104 -> 74.125.133.188 (TCP) - Rule match (Log Unknown TCP Traffic) | src=192.168.1.104 | dst=74.125.133.188 | proto=TCP
+2025-11-10 01:12:56,782 - firewall - WARNING - Packet blocked: 192.168.1.104 -> 74.125.133.188 (TCP) - Rule match (Log Unknown TCP Traffic) | src=192.168.1.104 | dst=74.125.133.188 | proto=TCP
+2025-11-10 01:12:57,286 - firewall - INFO - Packet allowed: 192.168.1.102 -> 239.255.255.250 (Protocol-2) - reason=UNTRACKED | src=192.168.1.102 | dst=239.255.255.250 | proto=Protocol-2
+2025-11-10 01:12:57,287 - firewall - INFO - Packet allowed: 192.168.1.102 -> 239.255.255.250 (Protocol-2) - reason=UNTRACKED | src=192.168.1.102 | dst=239.255.255.250 | proto=Protocol-2
+2025-11-10 01:12:58,994 - firewall - INFO - Packet allowed: 192.168.1.104 -> 172.64.155.209 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.1.104 | dst=172.64.155.209 | proto=TCP
+2025-11-10 01:12:58,994 - firewall - INFO - Packet allowed: 192.168.1.104 -> 172.64.155.209 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.1.104 | dst=172.64.155.209 | proto=TCP
+2025-11-10 01:12:58,994 - firewall - INFO - Packet allowed: 172.64.155.209 -> 192.168.1.104 (TCP) - reason=Allow HTTPS Inbound | src=172.64.155.209 | dst=192.168.1.104 | proto=TCP
+2025-11-10 01:12:58,995 - firewall - INFO - Packet allowed: 172.64.155.209 -> 192.168.1.104 (TCP) - reason=Allow HTTPS Inbound | src=172.64.155.209 | dst=192.168.1.104 | proto=TCP
+2025-11-10 01:13:01,714 - firewall - INFO - Packet allowed: 192.168.1.104 -> 142.250.202.228 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.1.104 | dst=142.250.202.228 | proto=UDP
+2025-11-10 01:13:01,715 - firewall - INFO - Packet allowed: 192.168.1.104 -> 142.250.202.228 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.1.104 | dst=142.250.202.228 | proto=UDP
+2025-11-10 01:13:01,817 - firewall - INFO - Packet allowed: 192.168.1.102 -> 224.0.0.251 (Protocol-2) - reason=UNTRACKED | src=192.168.1.102 | dst=224.0.0.251 | proto=Protocol-2
+2025-11-10 01:13:01,818 - firewall - INFO - Packet allowed: 192.168.1.102 -> 224.0.0.251 (Protocol-2) - reason=UNTRACKED | src=192.168.1.102 | dst=224.0.0.251 | proto=Protocol-2
+2025-11-10 01:13:01,819 - firewall - INFO - Packet allowed: 192.168.1.104 -> 142.250.202.228 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.1.104 | dst=142.250.202.228 | proto=UDP
+2025-11-10 01:13:01,920 - firewall - INFO - Packet allowed: 192.168.1.104 -> 142.250.202.228 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.1.104 | dst=142.250.202.228 | proto=UDP
+2025-11-10 01:13:01,921 - firewall - INFO - Packet allowed: 142.250.202.228 -> 192.168.1.104 (UDP) - reason=ESTABLISHED | src=142.250.202.228 | dst=192.168.1.104 | proto=UDP
+2025-11-10 01:13:01,921 - firewall - INFO - Packet allowed: 142.250.202.228 -> 192.168.1.104 (UDP) - reason=ESTABLISHED | src=142.250.202.228 | dst=192.168.1.104 | proto=UDP
+2025-11-10 01:13:01,922 - firewall - INFO - Packet allowed: 142.250.202.228 -> 192.168.1.104 (UDP) - reason=ESTABLISHED | src=142.250.202.228 | dst=192.168.1.104 | proto=UDP
+2025-11-10 01:13:01,922 - firewall - INFO - Packet allowed: 142.250.202.228 -> 192.168.1.104 (UDP) - reason=ESTABLISHED | src=142.250.202.228 | dst=192.168.1.104 | proto=UDP
+2025-11-10 01:13:02,023 - firewall - INFO - Packet allowed: 192.168.1.104 -> 142.250.202.228 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.1.104 | dst=142.250.202.228 | proto=UDP
+2025-11-10 01:13:02,024 - firewall - INFO - Packet allowed: 192.168.1.104 -> 142.250.202.228 (UDP) - reason=Allow HTTPS QUIC UDP 443 | src=192.168.1.104 | dst=142.250.202.228 | proto=UDP
+2025-11-10 01:13:02,125 - firewall - INFO - Packet allowed: 142.250.202.228 -> 192.168.1.104 (UDP) - reason=ESTABLISHED | src=142.250.202.228 | dst=192.168.1.104 | proto=UDP
+2025-11-10 01:13:02,126 - firewall - INFO - Packet allowed: 142.250.202.228 -> 192.168.1.104 (UDP) - reason=ESTABLISHED | src=142.250.202.228 | dst=192.168.1.104 | proto=UDP
+2025-11-10 01:13:03,131 - firewall - INFO - Packet allowed: 192.168.1.103 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.1.103 | dst=224.0.0.251 | proto=UDP
+2025-11-10 01:13:03,132 - firewall - INFO - Packet allowed: 192.168.1.103 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.1.103 | dst=224.0.0.251 | proto=UDP
+2025-11-10 01:13:06,860 - firewall - INFO - Packet allowed: 192.168.1.104 -> 172.188.155.25 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.1.104 | dst=172.188.155.25 | proto=TCP
+2025-11-10 01:13:06,861 - firewall - INFO - Packet allowed: 192.168.1.104 -> 172.188.155.25 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.1.104 | dst=172.188.155.25 | proto=TCP
+2025-11-10 01:13:07,063 - firewall - INFO - Packet allowed: 172.188.155.25 -> 192.168.1.104 (TCP) - reason=Allow HTTPS Inbound | src=172.188.155.25 | dst=192.168.1.104 | proto=TCP
+2025-11-10 01:13:07,064 - firewall - INFO - Packet allowed: 172.188.155.25 -> 192.168.1.104 (TCP) - reason=Allow HTTPS Inbound | src=172.188.155.25 | dst=192.168.1.104 | proto=TCP
+2025-11-10 01:13:07,467 - firewall - INFO - Packet allowed: 104.18.39.21 -> 192.168.1.104 (TCP) - reason=Allow HTTPS Inbound | src=104.18.39.21 | dst=192.168.1.104 | proto=TCP
+2025-11-10 01:13:07,468 - firewall - INFO - Packet allowed: 104.18.39.21 -> 192.168.1.104 (TCP) - reason=Allow HTTPS Inbound | src=104.18.39.21 | dst=192.168.1.104 | proto=TCP
+2025-11-10 01:13:07,570 - firewall - INFO - Packet allowed: 192.168.1.104 -> 104.18.39.21 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.1.104 | dst=104.18.39.21 | proto=TCP
+2025-11-10 01:13:07,571 - firewall - INFO - Packet allowed: 192.168.1.104 -> 104.18.39.21 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.1.104 | dst=104.18.39.21 | proto=TCP
+2025-11-10 01:13:07,673 - firewall - INFO - Packet allowed: 104.18.39.21 -> 192.168.1.104 (TCP) - reason=Allow HTTPS Inbound | src=104.18.39.21 | dst=192.168.1.104 | proto=TCP
+2025-11-10 01:13:07,673 - firewall - INFO - Packet allowed: 104.18.39.21 -> 192.168.1.104 (TCP) - reason=Allow HTTPS Inbound | src=104.18.39.21 | dst=192.168.1.104 | proto=TCP
+2025-11-10 01:13:10,092 - firewall - INFO - Packet allowed: 192.168.1.107 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.1.107 | dst=224.0.0.251 | proto=UDP
+2025-11-10 01:13:10,093 - firewall - INFO - Packet allowed: 192.168.1.107 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.1.107 | dst=224.0.0.251 | proto=UDP
+2025-11-10 01:13:10,294 - firewall - INFO - Packet allowed: 192.168.1.1 -> 224.0.0.1 (Protocol-2) - reason=UNTRACKED | src=192.168.1.1 | dst=224.0.0.1 | proto=Protocol-2
+2025-11-10 01:13:10,295 - firewall - INFO - Packet allowed: 192.168.1.1 -> 224.0.0.1 (Protocol-2) - reason=UNTRACKED | src=192.168.1.1 | dst=224.0.0.1 | proto=Protocol-2
+2025-11-10 01:13:11,101 - firewall - INFO - Packet allowed: 192.168.1.107 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.1.107 | dst=224.0.0.251 | proto=UDP
+2025-11-10 01:13:11,102 - firewall - INFO - Packet allowed: 192.168.1.107 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.1.107 | dst=224.0.0.251 | proto=UDP
+2025-11-10 01:13:11,612 - firewall - INFO - Packet allowed: 192.168.1.104 -> 54.187.119.242 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.1.104 | dst=54.187.119.242 | proto=TCP
+2025-11-10 01:13:11,713 - firewall - INFO - Packet allowed: 192.168.1.104 -> 54.187.119.242 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.1.104 | dst=54.187.119.242 | proto=TCP
+2025-11-10 01:13:11,714 - firewall - INFO - Packet allowed: 192.168.1.112 -> 224.0.0.251 (Protocol-2) - reason=UNTRACKED | src=192.168.1.112 | dst=224.0.0.251 | proto=Protocol-2
+2025-11-10 01:13:11,714 - firewall - INFO - Packet allowed: 192.168.1.112 -> 224.0.0.251 (Protocol-2) - reason=UNTRACKED | src=192.168.1.112 | dst=224.0.0.251 | proto=Protocol-2
+2025-11-10 01:13:13,226 - firewall - INFO - Packet allowed: 192.168.1.102 -> 224.0.0.251 (Protocol-2) - reason=UNTRACKED | src=192.168.1.102 | dst=224.0.0.251 | proto=Protocol-2
+2025-11-10 01:13:13,227 - firewall - INFO - Packet allowed: 192.168.1.102 -> 224.0.0.251 (Protocol-2) - reason=UNTRACKED | src=192.168.1.102 | dst=224.0.0.251 | proto=Protocol-2
+2025-11-10 01:13:14,038 - firewall - INFO - Packet allowed: 192.168.1.112 -> 239.255.255.250 (Protocol-2) - reason=UNTRACKED | src=192.168.1.112 | dst=239.255.255.250 | proto=Protocol-2
+2025-11-10 01:13:14,039 - firewall - INFO - Packet allowed: 192.168.1.112 -> 239.255.255.250 (Protocol-2) - reason=UNTRACKED | src=192.168.1.112 | dst=239.255.255.250 | proto=Protocol-2
+2025-11-10 01:13:14,039 - firewall - INFO - Packet allowed: 192.168.1.107 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.1.107 | dst=224.0.0.251 | proto=UDP
+2025-11-10 01:13:14,039 - firewall - INFO - Packet allowed: 192.168.1.107 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.1.107 | dst=224.0.0.251 | proto=UDP
+2025-11-10 01:13:14,647 - firewall - INFO - Packet allowed: 192.168.1.102 -> 239.255.255.250 (Protocol-2) - reason=UNTRACKED | src=192.168.1.102 | dst=239.255.255.250 | proto=Protocol-2
+2025-11-10 01:13:14,647 - firewall - INFO - Packet allowed: 192.168.1.102 -> 239.255.255.250 (Protocol-2) - reason=UNTRACKED | src=192.168.1.102 | dst=239.255.255.250 | proto=Protocol-2
+2025-11-10 01:13:16,160 - firewall - INFO - Packet allowed: 192.168.1.104 -> 172.64.155.209 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.1.104 | dst=172.64.155.209 | proto=TCP
+2025-11-10 01:13:16,161 - firewall - INFO - Packet allowed: 192.168.1.104 -> 172.64.155.209 (TCP) - reason=Allow HTTPS TCP 443 | src=192.168.1.104 | dst=172.64.155.209 | proto=TCP
+2025-11-10 01:13:16,262 - firewall - INFO - Packet allowed: 172.64.155.209 -> 192.168.1.104 (TCP) - reason=Allow HTTPS Inbound | src=172.64.155.209 | dst=192.168.1.104 | proto=TCP
+2025-11-10 01:13:16,364 - firewall - INFO - Packet allowed: 172.64.155.209 -> 192.168.1.104 (TCP) - reason=Allow HTTPS Inbound | src=172.64.155.209 | dst=192.168.1.104 | proto=TCP
+2025-11-10 01:13:16,770 - firewall - INFO - Packet allowed: 192.168.1.102 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.1.102 | dst=224.0.0.251 | proto=UDP
+2025-11-10 01:13:16,770 - firewall - INFO - Packet allowed: 192.168.1.102 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.1.102 | dst=224.0.0.251 | proto=UDP
+2025-11-10 01:13:17,373 - firewall - INFO - Packet allowed: 192.168.1.104 -> 224.0.0.252 (Protocol-2) - reason=UNTRACKED | src=192.168.1.104 | dst=224.0.0.252 | proto=Protocol-2
+2025-11-10 01:13:17,374 - firewall - INFO - Packet allowed: 192.168.1.104 -> 224.0.0.252 (Protocol-2) - reason=UNTRACKED | src=192.168.1.104 | dst=224.0.0.252 | proto=Protocol-2
+2025-11-10 01:13:17,374 - firewall - INFO - Packet allowed: 192.168.1.104 -> 224.0.0.252 (Protocol-2) - reason=UNTRACKED | src=192.168.1.104 | dst=224.0.0.252 | proto=Protocol-2
+2025-11-10 01:13:17,375 - firewall - INFO - Packet allowed: 192.168.1.104 -> 224.0.0.252 (Protocol-2) - reason=UNTRACKED | src=192.168.1.104 | dst=224.0.0.252 | proto=Protocol-2
+2025-11-10 01:13:17,778 - firewall - INFO - Packet allowed: 192.168.1.102 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.1.102 | dst=224.0.0.251 | proto=UDP
+2025-11-10 01:13:17,779 - firewall - INFO - Packet allowed: 192.168.1.102 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.1.102 | dst=224.0.0.251 | proto=UDP
+2025-11-10 01:13:17,780 - firewall - INFO - Packet allowed: 192.168.1.107 -> 224.0.0.251 (Protocol-2) - reason=UNTRACKED | src=192.168.1.107 | dst=224.0.0.251 | proto=Protocol-2
+2025-11-10 01:13:17,781 - firewall - INFO - Packet allowed: 192.168.1.107 -> 224.0.0.251 (Protocol-2) - reason=UNTRACKED | src=192.168.1.107 | dst=224.0.0.251 | proto=Protocol-2
+2025-11-10 01:13:17,882 - firewall - INFO - Packet allowed: 192.168.1.1 -> 192.168.1.255 (UDP) - reason=ESTABLISHED | src=192.168.1.1 | dst=192.168.1.255 | proto=UDP
+2025-11-10 01:13:17,883 - firewall - INFO - Packet allowed: 192.168.1.1 -> 192.168.1.255 (UDP) - reason=ESTABLISHED | src=192.168.1.1 | dst=192.168.1.255 | proto=UDP
+2025-11-10 01:33:52,723 - firewall - INFO - Enhanced Firewall started successfully

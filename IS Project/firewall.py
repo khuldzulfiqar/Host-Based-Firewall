@@ -74,7 +74,7 @@ class EnhancedFirewall:
     def start(self):
         """Start the enhanced firewall"""
         self.running = True
-        self.log_callback("Enhanced Firewall started...")
+        self.log_callback("Host-Based Firewall started...")
         
         # Start monitoring
         self.monitor.start_monitoring()
@@ -124,7 +124,7 @@ class EnhancedFirewall:
             timestamp=datetime.now(),
             event_type="FIREWALL_STARTED",
             level=LogLevel.INFO,
-            message="Enhanced Firewall started successfully"
+            message="Host-Based Firewall started successfully"
         ))
     
     def _start_packet_capture_with_processing(self):
@@ -349,14 +349,14 @@ class EnhancedFirewall:
         if hasattr(self, 'capture_thread') and self.capture_thread and self.capture_thread.is_alive():
             self.capture_thread.join(timeout=2)
         
-        self.log_callback("Enhanced Firewall stopped.")
+        self.log_callback("Host-Based Firewall stopped.")
         
         # Log shutdown
         self.logger.log_event(FirewallEvent(
             timestamp=datetime.now(),
             event_type="FIREWALL_STOPPED",
             level=LogLevel.INFO,
-            message="Enhanced Firewall stopped"
+            message="Host-Based Firewall stopped"
         ))
 
     def reload_configuration(self) -> bool:
@@ -487,10 +487,13 @@ class EnhancedFirewall:
 class EnhancedFirewallGUI:
     def __init__(self, root, user_role):
         self.root = root
-        self.root.title("Enhanced Host-Based Firewall")
+        self.root.title("Host-Based Firewall")
         self.root.geometry("1200x800")
 
-        # Initialize firewall first
+        # Store user role first before initializing firewall
+        self.user_role = user_role
+
+        # Initialize firewall
         self.firewall = EnhancedFirewall(self.log_message)
         self.thread = None
         self.capture_thread = None
@@ -500,7 +503,6 @@ class EnhancedFirewallGUI:
         self.auto_refresh_running = False
         self.refresh_interval = 2  # Default 2 seconds like real firewalls
         self.last_refresh_time = None
-        self.user_role = user_role  # will be set after login
 
         # Create notebook for tabs
         self.notebook = ttk.Notebook(root)
@@ -512,6 +514,32 @@ class EnhancedFirewallGUI:
         self._create_monitoring_tab()
         self._create_logs_tab()
         self._create_configuration_tab()
+        
+        # Apply role-based restrictions after all tabs are created
+        self._apply_role_restrictions()
+
+    def _apply_role_restrictions(self):
+        """Apply role-based access control restrictions"""
+        if self.user_role != "admin":
+            self.log_message("⚠️ Limited access: Guest mode - Configuration tab disabled")
+            
+            # Disable Configuration tab
+            try:
+                for i in range(self.notebook.index("end")):
+                    tab_text = self.notebook.tab(i, "text")
+                    if tab_text.lower() == "configuration":
+                        self.notebook.tab(i, state="disabled")
+                        self.log_message("✓ Configuration tab disabled for guest user")
+                        break
+            except Exception as e:
+                self.log_message(f"Error disabling Configuration tab: {e}")
+            
+            # Disable rule management buttons
+            try:
+                self._disable_buttons_in_frame(self.notebook, ["add", "delete", "edit", "update", "remove", "clear"])
+                self.log_message("✓ Rule management buttons disabled for guest user")
+            except Exception as e:
+                self.log_message(f"Error disabling rule buttons: {e}")
 
     def _insert_text(self, widget, text):
         """Temporarily enable widget, insert text, then disable it again."""
@@ -546,13 +574,11 @@ class EnhancedFirewallGUI:
         self.start_btn.pack(side=tk.LEFT, padx=5)
 
         self.report_btn = ttk.Button(
-    control_frame,
-    text="Generate Daily Report",
-    command=self.on_generate_daily_report  # updated to show images
-)
+            control_frame,
+            text="Generate Daily Report",
+            command=self.on_generate_daily_report
+        )
         self.report_btn.pack(side=tk.LEFT, padx=5)
-
-
 
         self.stop_btn = ttk.Button(control_frame, text="Stop Firewall", command=self.stop_firewall)
         self.stop_btn.pack(side=tk.LEFT, padx=5)
@@ -562,10 +588,20 @@ class EnhancedFirewallGUI:
         
         self.auto_refresh_btn = ttk.Button(control_frame, text="Enable Auto-Refresh", command=self.toggle_auto_refresh)
         self.auto_refresh_btn.pack(side=tk.LEFT, padx=5)
+        
+        # Add Logout button
+        self.logout_btn = ttk.Button(control_frame, text="Logout", command=self.logout)
+        self.logout_btn.pack(side=tk.RIGHT, padx=5)
 
         # Status display
         status_frame = ttk.LabelFrame(dashboard_frame, text="Status")
         status_frame.pack(fill=tk.X, padx=10, pady=5)
+
+        # Add user role display
+        role_text = f"Logged in as: {self.user_role.upper()}"
+        role_color = "green" if self.user_role == "admin" else "orange"
+        self.role_label = ttk.Label(status_frame, text=role_text, font=("Arial", 10, "bold"), foreground=role_color)
+        self.role_label.pack(pady=2)
 
         self.status_label = ttk.Label(status_frame, text="Firewall: Stopped", font=("Arial", 12, "bold"))
         self.status_label.pack(pady=5)
@@ -607,13 +643,6 @@ class EnhancedFirewallGUI:
 
         # Create rule management GUI
         self.rule_manager_gui = self.firewall.rule_manager.show_gui(rules_frame)
-        
-        if self.user_role and self.user_role != "admin":
-            try:
-                # Find and disable all buttons in rule_manager_gui
-                self._disable_buttons_in_frame(rules_frame, ["add", "delete", "edit", "update", "remove"])
-            except Exception as e:
-                self.log_message(f"Error disabling rule buttons: {e}")
 
     def _disable_buttons_in_frame(self, parent_frame, button_keywords):
         """Recursively disable buttons in a frame that match keywords"""
@@ -625,7 +654,6 @@ class EnhancedFirewallGUI:
                     # Disable if button text contains any of the keywords
                     if any(keyword in button_text for keyword in button_keywords):
                         widget.config(state="disabled")
-                        self.log_message(f"Disabled button: {button_text}")
                 
                 # Recursively check child frames
                 if hasattr(widget, 'winfo_children'):
@@ -723,6 +751,20 @@ class EnhancedFirewallGUI:
         self.firewall.stop()
         self.status_label.config(text="Firewall: Stopped", foreground="red")
         self.stop_auto_refresh()
+    
+    def logout(self):
+        """Logout and return to login screen"""
+        # Confirm logout
+        if messagebox.askyesno("Logout", "Are you sure you want to logout?"):
+            # Stop firewall if running
+            if self.firewall.running:
+                self.stop_firewall()
+            
+            self.log_message(f"User {self.user_role} logged out")
+            
+            # Properly close the window to trigger mainloop exit
+            self.root.quit()  # This exits the mainloop
+            self.root.destroy()  # This destroys the window
 
     def toggle_auto_refresh(self):
         """Toggle auto-refresh on/off"""
@@ -972,78 +1014,78 @@ class EnhancedFirewallGUI:
             messagebox.showerror("Error", f"Error exporting logs: {e}")
     
     def on_generate_daily_report(self):
-     try:
-        report_path, gui_images = generate_report(period="daily")
+        try:
+            report_path, gui_images = generate_report(period="daily")
 
-        self.img_labels = []
+            self.img_labels = []
 
-        img_window = tk.Toplevel(self.root)
-        img_window.title("Daily Firewall Report")
-        
-        # Scrollable canvas for images
-        canvas = tk.Canvas(img_window)
-        scrollbar = tk.Scrollbar(img_window, orient=tk.VERTICAL, command=canvas.yview)
-        canvas.configure(yscrollcommand=scrollbar.set)
-        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
-        canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
-        
-        frame = tk.Frame(canvas)
-        canvas.create_window((0,0), window=frame, anchor='n')  # anchor north for vertical scroll
+            img_window = tk.Toplevel(self.root)
+            img_window.title("Daily Firewall Report")
+            
+            # Scrollable canvas for images
+            canvas = tk.Canvas(img_window)
+            scrollbar = tk.Scrollbar(img_window, orient=tk.VERTICAL, command=canvas.yview)
+            canvas.configure(yscrollcommand=scrollbar.set)
+            scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+            canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+            
+            frame = tk.Frame(canvas)
+            canvas.create_window((0,0), window=frame, anchor='n')
 
-        # Make the single column expand to allow centering
-        frame.grid_columnconfigure(0, weight=1)
+            # Make the single column expand to allow centering
+            frame.grid_columnconfigure(0, weight=1)
 
-        # Add images vertically and center
-        for i, img in enumerate(gui_images):
-            lbl = tk.Label(frame, image=img)
-            lbl.image = img  # keep reference
-            lbl.grid(row=i, column=0, padx=5, pady=5)  # sticky defaults to center
-            self.img_labels.append(lbl)
+            # Add images vertically and center
+            for i, img in enumerate(gui_images):
+                lbl = tk.Label(frame, image=img)
+                lbl.image = img  # keep reference
+                lbl.grid(row=i, column=0, padx=5, pady=5)
+                self.img_labels.append(lbl)
 
-        # Update scrollable area
-        frame.update_idletasks()
-        canvas.config(scrollregion=canvas.bbox("all"))
+            # Update scrollable area
+            frame.update_idletasks()
+            canvas.config(scrollregion=canvas.bbox("all"))
 
-        # Report path label
-        tk.Label(img_window, text=f"Report saved to: {report_path}", fg="green").pack(pady=5)
+            # Report path label
+            tk.Label(img_window, text=f"Report saved to: {report_path}", fg="green").pack(pady=5)
 
-     except Exception as e:
-        messagebox.showerror("Error", f"Failed to generate report:\n{e}")
-
+        except Exception as e:
+            messagebox.showerror("Error", f"Failed to generate report:\n{e}")
 
 
 # ---------- Main ----------
 
 if __name__ == "__main__":
     import tkinter as tk
-    from auth_system import login  # uses the updated login function with RBAC
+    from auth_system import login
+    import sys
 
-    # Step 1: Authenticate user
-    role = login()  # login() returns 'admin' or 'user'
-    print(f"Logged in as: {role.upper()}")
+    # Main loop to support logout and return to login
+    while True:
+        # Step 1: Authenticate user
+        role = login()
+        
+        # Check if user cancelled login
+        if role is None:
+            print("Login cancelled. Exiting...")
+            break
+        
+        print(f"Logged in as: {role.upper()}")
 
-    # Step 2: Initialize GUI
-    root = tk.Tk()
-    gui = EnhancedFirewallGUI(root, role)
+        # Step 2: Initialize GUI
+        root = tk.Tk()
+        gui = EnhancedFirewallGUI(root, role)
 
-    # Step 3: Apply role-based access control
-    if role != "admin":
-        print("⚠️ Limited access: view-only mode for guest/user")
+        # Step 3: Start GUI loop
         try:
-            # Disable admin-only buttons if they exist
-            admin_buttons = [
-                getattr(gui, "add_rule_button", None),
-                getattr(gui, "delete_rule_button", None),
-                getattr(gui, "update_rule_button", None)
-            ]
-            for btn in admin_buttons:
-                if btn:
-                    btn.config(state="disabled")
+            root.mainloop()
+            # If we reach here, user logged out - loop back to login
+            print("Returning to login screen...")
+        except KeyboardInterrupt:
+            print("Firewall stopped by user.")
+            break
         except Exception as e:
-            print(f"⚠️ Error applying role restrictions: {e}")
-
-    # Step 4: Start GUI loop
-    try:
-        root.mainloop()
-    except KeyboardInterrupt:
-        print("Firewall stopped by user.")
+            print(f"Error: {e}")
+            import traceback
+            traceback.print_exc()
+            break

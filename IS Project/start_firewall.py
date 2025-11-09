@@ -8,7 +8,6 @@ import sys
 import os
 import traceback
 
-<<<<<<< HEAD
 # 🔐 Import authentication system
 from auth_system import authenticate_user, ensure_default_users, change_password
 
@@ -46,8 +45,6 @@ def login():
             # retry login
             print("Try again.\n")
 
-=======
->>>>>>> 752be40f2a8e6162abbd420c5915312dbe69f252
 def check_requirements():
     """Check if all required modules are available"""
     try:
