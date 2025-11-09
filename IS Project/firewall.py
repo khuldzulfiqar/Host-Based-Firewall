@@ -952,6 +952,7 @@ class EnhancedFirewallGUI:
 
         img_window = tk.Toplevel(self.root)
         img_window.title("Daily Firewall Report")
+        img_window.geometry("1000x700")  # Set initial window size
         
         # Scrollable canvas for images
         canvas = tk.Canvas(img_window)
@@ -961,7 +962,7 @@ class EnhancedFirewallGUI:
         canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
         
         frame = tk.Frame(canvas)
-        canvas.create_window((0,0), window=frame, anchor='n')  # anchor north for vertical scroll
+        canvas_window = canvas.create_window((0, 0), window=frame, anchor='nw')
 
         # Make the single column expand to allow centering
         frame.grid_columnconfigure(0, weight=1)
@@ -970,12 +971,23 @@ class EnhancedFirewallGUI:
         for i, img in enumerate(gui_images):
             lbl = tk.Label(frame, image=img)
             lbl.image = img  # keep reference
-            lbl.grid(row=i, column=0, padx=5, pady=5)  # sticky defaults to center
+            lbl.grid(row=i, column=0, padx=5, pady=5, sticky='')  # Center horizontally
             self.img_labels.append(lbl)
 
-        # Update scrollable area
+        # Update scrollable area and center the frame
+        def configure_scroll_region(event=None):
+            # Update the scroll region
+            canvas.config(scrollregion=canvas.bbox("all"))
+            # Center the frame horizontally
+            canvas_width = canvas.winfo_width()
+            frame_width = frame.winfo_reqwidth()
+            if canvas_width > 1 and frame_width > 1:
+                x = max(1, (canvas_width - frame_width) // 2)
+                canvas.coords(canvas_window, x, 0)
+        
         frame.update_idletasks()
-        canvas.config(scrollregion=canvas.bbox("all"))
+        canvas.bind('<Configure>', configure_scroll_region)
+        configure_scroll_region()
 
         # Report path label
         tk.Label(img_window, text=f"Report saved to: {report_path}", fg="green").pack(pady=5)

@@ -4,7 +4,7 @@ GUI and CLI interfaces for managing firewall rules
 """
 
 import tkinter as tk
-from tkinter import ttk, messagebox, simpledialog
+from tkinter import ttk, messagebox, simpledialog, filedialog
 from typing import List, Optional, Dict, Any
 import json
 import os
@@ -302,7 +302,7 @@ class RuleManagementGUI:
     def _import_rules(self):
         """Import rules from file"""
         try:
-            filename = tk.filedialog.askopenfilename(
+            filename = filedialog.askopenfilename(
                 title="Import Rules",
                 filetypes=[("JSON files", "*.json"), ("All files", "*.*")]
             )
@@ -312,6 +312,19 @@ class RuleManagementGUI:
                 
                 imported_count = 0
                 for rule_data in rules_data:
+                    # Convert string enum values to enum types
+                    if 'action' in rule_data and isinstance(rule_data['action'], str):
+                        rule_data['action'] = RuleAction(rule_data['action'])
+                    if 'direction' in rule_data and isinstance(rule_data['direction'], str):
+                        rule_data['direction'] = RuleDirection(rule_data['direction'])
+                    if 'protocol' in rule_data and isinstance(rule_data['protocol'], str):
+                        rule_data['protocol'] = Protocol(rule_data['protocol'])
+                    
+                    # Convert created_at string to datetime if present
+                    if 'created_at' in rule_data and rule_data['created_at']:
+                        if isinstance(rule_data['created_at'], str):
+                            rule_data['created_at'] = datetime.fromisoformat(rule_data['created_at'])
+                    
                     rule = FirewallRule(**rule_data)
                     if self.rule_engine.add_rule(rule):
                         imported_count += 1
@@ -324,7 +337,7 @@ class RuleManagementGUI:
     def _export_rules(self):
         """Export rules to file"""
         try:
-            filename = tk.filedialog.asksaveasfilename(
+            filename = filedialog.asksaveasfilename(
                 title="Export Rules",
                 defaultextension=".json",
                 filetypes=[("JSON files", "*.json"), ("All files", "*.*")]
