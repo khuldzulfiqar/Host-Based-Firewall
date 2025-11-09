@@ -1,22 +1,17 @@
 {
-  "generated_at": "2025-11-09T18:28:31.409243",
+  "generated_at": "2025-11-09T19:11:42.237969",
   "period": "daily",
   "summary": {
-    "total_events": 53076,
+    "total_events": 51733,
     "total_bytes": 0,
     "total_blocked": 0,
-    "unique_src": 203,
-    "unique_dst": 208
+    "unique_src": 182,
+    "unique_dst": 185
   },
   "time_series": [
     {
       "date": "2025-10-30",
-      "events": 2199,
-      "bytes": 0
-    },
-    {
-      "date": "2025-11-01",
-      "events": 370,
+      "events": 1952,
       "bytes": 0
     },
     {
@@ -26,18 +21,18 @@
     },
     {
       "date": "2025-11-09",
-      "events": 50494,
+      "events": 49771,
       "bytes": 0
     }
   ],
   "top_src": [
     {
       "src_ip": "192.168.1.100",
-      "events": 20591
+      "events": 20583
     },
     {
       "src_ip": "172.64.155.209",
-      "events": 5052
+      "events": 5050
     },
     {
       "src_ip": "192.168.0.125",
@@ -45,7 +40,7 @@
     },
     {
       "src_ip": "104.18.32.47",
-      "events": 2417
+      "events": 2415
     },
     {
       "src_ip": "192.168.0.104",
@@ -53,23 +48,23 @@
     },
     {
       "src_ip": "192.168.1.1",
-      "events": 1441
+      "events": 1345
     },
     {
       "src_ip": "13.107.213.63",
-      "events": 820
-    },
-    {
-      "src_ip": "35.190.80.1",
-      "events": 660
+      "events": 816
     },
     {
       "src_ip": "172.64.148.235",
       "events": 658
     },
     {
-      "src_ip": "192.168.1.102",
-      "events": 632
+      "src_ip": "35.190.80.1",
+      "events": 644
+    },
+    {
+      "src_ip": "64.233.166.84",
+      "events": 611
     }
   ],
   "top_dst": [
@@ -79,11 +74,11 @@
     },
     {
       "dst_ip": "172.64.155.209",
-      "events": 5258
+      "events": 5256
     },
     {
       "dst_ip": "104.18.32.47",
-      "events": 2374
+      "events": 2372
     },
     {
       "dst_ip": "192.168.0.125",
@@ -91,27 +86,27 @@
     },
     {
       "dst_ip": "224.0.0.251",
-      "events": 2038
-    },
-    {
-      "dst_ip": "224.0.0.252",
       "events": 1806
     },
     {
+      "dst_ip": "224.0.0.252",
+      "events": 1792
+    },
+    {
       "dst_ip": "239.255.255.250",
-      "events": 1732
+      "events": 1586
     },
     {
       "dst_ip": "35.190.80.1",
-      "events": 1380
+      "events": 1348
     },
     {
       "dst_ip": "192.168.0.255",
-      "events": 1028
+      "events": 1024
     },
     {
       "dst_ip": "192.168.1.1",
-      "events": 852
+      "events": 830
     }
   ],
   "top_blocked_src": [],

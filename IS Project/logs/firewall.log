@@ -51728,3 +51728,6 @@ to=TCP
 2025-11-09 10:28:44,797 - firewall - INFO - Packet allowed: 192.168.0.104 -> 192.168.0.255 (UDP) - reason=ESTABLISHED | src=192.168.0.104 | dst=192.168.0.255 | proto=UDP
 2025-11-09 10:28:44,999 - firewall - INFO - Packet allowed: 192.168.0.101 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.101 | dst=224.0.0.251 | proto=UDP
 2025-11-09 10:28:45,000 - firewall - INFO - Packet allowed: 192.168.0.101 -> 224.0.0.251 (UDP) - reason=ESTABLISHED | src=192.168.0.101 | dst=224.0.0.251 | proto=UDP
+2025-11-09 11:43:23,659 - firewall - INFO - Enhanced Firewall started successfully
+2025-11-09 12:04:46,482 - firewall - INFO - Enhanced Firewall started successfully
+2025-11-09 12:11:41,026 - firewall - INFO - Enhanced Firewall started successfully

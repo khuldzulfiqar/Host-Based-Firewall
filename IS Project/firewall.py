@@ -955,28 +955,34 @@ class EnhancedFirewallGUI:
         
         # Scrollable canvas for images
         canvas = tk.Canvas(img_window)
-        scrollbar = tk.Scrollbar(img_window, orient=tk.HORIZONTAL, command=canvas.xview)
-        canvas.configure(xscrollcommand=scrollbar.set)
-        scrollbar.pack(side=tk.BOTTOM, fill=tk.X)
-        canvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+        scrollbar = tk.Scrollbar(img_window, orient=tk.VERTICAL, command=canvas.yview)
+        canvas.configure(yscrollcommand=scrollbar.set)
+        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+        canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
         
         frame = tk.Frame(canvas)
-        canvas.create_window((0,0), window=frame, anchor='nw')
+        canvas.create_window((0,0), window=frame, anchor='n')  # anchor north for vertical scroll
 
+        # Make the single column expand to allow centering
+        frame.grid_columnconfigure(0, weight=1)
+
+        # Add images vertically and center
         for i, img in enumerate(gui_images):
             lbl = tk.Label(frame, image=img)
             lbl.image = img  # keep reference
-            lbl.grid(row=0, column=i, padx=5, pady=5)
+            lbl.grid(row=i, column=0, padx=5, pady=5)  # sticky defaults to center
             self.img_labels.append(lbl)
 
         # Update scrollable area
         frame.update_idletasks()
         canvas.config(scrollregion=canvas.bbox("all"))
 
+        # Report path label
         tk.Label(img_window, text=f"Report saved to: {report_path}", fg="green").pack(pady=5)
 
      except Exception as e:
         messagebox.showerror("Error", f"Failed to generate report:\n{e}")
+
 
 
 # ---------- Main ----------
