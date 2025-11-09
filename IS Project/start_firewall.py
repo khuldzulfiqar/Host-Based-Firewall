@@ -9,8 +9,8 @@ import os
 import traceback
 
 # 🔐 Import authentication system
-from auth_system import authenticate_user, ensure_default_users
-
+#from auth_system import authenticate_user, ensure_default_users
+'''
 def login():
     """Console-based user login before starting the firewall"""
     ensure_default_users()
@@ -24,6 +24,7 @@ def login():
         input("Press Enter to exit...")
         sys.exit(1)
     return role
+    '''
 
 
 def check_requirements():
@@ -72,8 +73,8 @@ def main():
     print("=== Enhanced Host-Based Firewall Startup ===")
 
     # 🧠 Step 1: User Authentication
-    role = login()
-    print(f"Logged in as: {role.upper()}")
+    #role = login()
+    #print(f"Logged in as: {role.upper()}")
 
     # 🧩 Step 2: System checks
     print("\nChecking system requirements...\n")

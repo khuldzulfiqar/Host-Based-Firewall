@@ -4,6 +4,7 @@ import threading
 import time
 from datetime import datetime
 
+
 # Import all modules
 from packet_capture import PacketCapture, PacketInfo
 from rule_engine import RuleEngine, RuleAction, RuleDirection, Protocol, FirewallRule
@@ -11,6 +12,8 @@ from stateful_inspection import StatefulInspector, ConnectionState
 from rule_management import RuleManager
 from logging_monitoring import FirewallLogger, FirewallMonitor, LogLevel, FirewallEvent
 from configuration_policy import ConfigurationManager, PolicyManager
+from performance_analyzer import PerformanceAnalyzer
+
 
 # ---------- Enhanced Firewall with All Modules ----------
 class EnhancedFirewall:
@@ -28,6 +31,11 @@ class EnhancedFirewall:
         self.config_manager = ConfigurationManager()
         self.policy_manager = PolicyManager()
         
+    
+
+        
+        
+        
         # Statistics
         self.stats = {
             'packets_processed': 0,
@@ -37,7 +45,6 @@ class EnhancedFirewall:
             'rules_evaluated': 0
         }
         self._install_demo_rules()
-
     def _install_demo_rules(self):
         """Install quick demo rules so user can immediately verify blocking."""
         existing = [r.name for r in self.rule_engine.get_all_rules()]
@@ -500,7 +507,9 @@ class EnhancedFirewallGUI:
 
         # Create notebook for tabs
         self.notebook = ttk.Notebook(root)
+        style = ttk.Style()
         self.notebook.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
+        
 
         # Create tabs
         self._create_dashboard_tab()
@@ -508,6 +517,11 @@ class EnhancedFirewallGUI:
         self._create_monitoring_tab()
         self._create_logs_tab()
         self._create_configuration_tab()
+
+        self.performance_analyzer = PerformanceAnalyzer(self.notebook)
+        perf_frame = self.performance_analyzer.get_frame()
+        self.notebook.add(perf_frame, text="Performance Analyzer")
+        
 
     def _insert_text(self, widget, text):
         """Temporarily enable widget, insert text, then disable it again."""
@@ -650,6 +664,14 @@ class EnhancedFirewallGUI:
             messagebox.showinfo("Reload", "Configuration and policies reloaded successfully.")
         else:
             messagebox.showwarning("Reload", "Reload completed with issues. Check logs for details.")
+    def open_performance_analyzer(self):
+         """Open the standalone Performance Analyzer window"""
+         try:
+            show_performance_stats()
+         except Exception as e:
+            messagebox.showerror("Error", f"Failed to open Performance Analyzer: {e}")
+
+
 
     def log_message(self, message):
         """Log message to activity log"""
