@@ -336,41 +336,46 @@ def save_plot_from_series(series_df: pd.DataFrame, x_col: str, y_cols: list, tit
     if series_df.empty:
         return None
 
-    # Ensure correct datatypes
+    # Ensure numbers
     series_df[y_cols] = series_df[y_cols].apply(pd.to_numeric, errors='coerce').fillna(0)
     series_df[x_col] = pd.to_datetime(series_df[x_col], errors='coerce')
 
-    # Sort by X axis
-    series_df = series_df.sort_values(x_col)
+    # ---- AUTO SCALE BYTES ----
+    byte_col = y_cols[1] if len(y_cols) > 1 else None
+    unit = "Bytes"
+    if byte_col:
+        max_val = series_df[byte_col].max()
+        if max_val > 1024**3:
+            series_df[byte_col] = series_df[byte_col] / (1024**3)
+            unit = "GB"
+        elif max_val > 1024**2:
+            series_df[byte_col] = series_df[byte_col] / (1024**2)
+            unit = "MB"
+        elif max_val > 1024:
+            series_df[byte_col] = series_df[byte_col] / 1024
+            unit = "KB"
 
-    # Fill missing dates if daily
-    if len(series_df) > 1 and (x_col == "date" or x_col == "week"):
-        full_range = pd.date_range(start=series_df[x_col].min(), end=series_df[x_col].max(), freq='D' if x_col=='date' else 'W-MON')
-        series_df = series_df.set_index(x_col).reindex(full_range).fillna(0).rename_axis(x_col).reset_index()
+    # Create directory if missing
+    out_path.parent.mkdir(parents=True, exist_ok=True)
 
-    # Plot
-    fig, ax1 = plt.subplots(figsize=(10,5))
+    fig, ax1 = plt.subplots(figsize=(10, 5))
 
-    color1 = 'tab:blue'
-    ax1.plot(series_df[x_col], series_df[y_cols[0]], marker='o', color=color1, label=y_cols[0])
-    ax1.set_xlabel(x_col)
-    ax1.set_ylabel(y_cols[0], color=color1)
-    ax1.tick_params(axis='y', labelcolor=color1)
+    # Plot events
+    ax1.plot(series_df[x_col], series_df[y_cols[0]], marker='o', label=y_cols[0])
+    ax1.set_xlabel("Date")
+    ax1.set_ylabel("Events", color='blue')
+    ax1.tick_params(axis='y', labelcolor='blue')
 
-    if len(y_cols) > 1:
+    # Plot bytes on second axis
+    if byte_col:
         ax2 = ax1.twinx()
-        color2 = 'tab:orange'
-        ax2.plot(series_df[x_col], series_df[y_cols[1]], marker='o', color=color2, label=y_cols[1])
-        ax2.set_ylabel(y_cols[1], color=color2)
-        ax2.tick_params(axis='y', labelcolor=color2)
-
-    # Format x-axis for dates
-    ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
-    fig.autofmt_xdate(rotation=45)
+        ax2.plot(series_df[x_col], series_df[byte_col], marker='o', label=byte_col, linestyle='--')
+        ax2.set_ylabel(f"Data ({unit})", color='orange')
+        ax2.tick_params(axis='y', labelcolor='orange')
 
     plt.title(title)
+    fig.autofmt_xdate()
     fig.tight_layout()
-    out_path.parent.mkdir(parents=True, exist_ok=True)
     plt.savefig(out_path)
     plt.close()
     return out_path
