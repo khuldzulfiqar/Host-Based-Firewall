@@ -1,4 +1,5 @@
 import tkinter as tk
+
 from tkinter import scrolledtext, messagebox, ttk
 import threading
 import time
@@ -11,7 +12,8 @@ from stateful_inspection import StatefulInspector, ConnectionState
 from rule_management import RuleManager
 from logging_monitoring import FirewallLogger, FirewallMonitor, LogLevel, FirewallEvent
 from configuration_policy import ConfigurationManager, PolicyManager
-
+from firewall_reporting import generate_report
+import tkinter.messagebox as messagebox
 # ---------- Enhanced Firewall with All Modules ----------
 class EnhancedFirewall:
     def __init__(self, log_callback):
@@ -520,6 +522,14 @@ class EnhancedFirewallGUI:
         widget.config(state=tk.NORMAL)
         widget.delete(1.0, tk.END)
         widget.config(state=tk.DISABLED)
+    
+    def generate_daily_report(self):
+        try:
+            path = generate_report(period="daily")
+            messagebox.showinfo("Report Generated", f"Saved at:\n{path}")
+        except Exception as e:
+            messagebox.showerror("Error", str(e))
+
 
     def _create_dashboard_tab(self):
         """Create main dashboard tab"""
@@ -532,6 +542,15 @@ class EnhancedFirewallGUI:
 
         self.start_btn = ttk.Button(control_frame, text="Start Firewall", command=self.start_firewall)
         self.start_btn.pack(side=tk.LEFT, padx=5)
+
+        self.report_btn = ttk.Button(
+    control_frame,
+    text="Generate Daily Report",
+    command=self.on_generate_daily_report  # updated to show images
+)
+        self.report_btn.pack(side=tk.LEFT, padx=5)
+
+
 
         self.stop_btn = ttk.Button(control_frame, text="Stop Firewall", command=self.stop_firewall)
         self.stop_btn.pack(side=tk.LEFT, padx=5)
@@ -924,6 +943,41 @@ class EnhancedFirewallGUI:
                 messagebox.showinfo("Success", f"Logs exported to {filename}")
         except Exception as e:
             messagebox.showerror("Error", f"Error exporting logs: {e}")
+    
+    def on_generate_daily_report(self):
+     try:
+        report_path, gui_images = generate_report(period="daily")
+
+        self.img_labels = []
+
+        img_window = tk.Toplevel(self.root)
+        img_window.title("Daily Firewall Report")
+        
+        # Scrollable canvas for images
+        canvas = tk.Canvas(img_window)
+        scrollbar = tk.Scrollbar(img_window, orient=tk.HORIZONTAL, command=canvas.xview)
+        canvas.configure(xscrollcommand=scrollbar.set)
+        scrollbar.pack(side=tk.BOTTOM, fill=tk.X)
+        canvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+        
+        frame = tk.Frame(canvas)
+        canvas.create_window((0,0), window=frame, anchor='nw')
+
+        for i, img in enumerate(gui_images):
+            lbl = tk.Label(frame, image=img)
+            lbl.image = img  # keep reference
+            lbl.grid(row=0, column=i, padx=5, pady=5)
+            self.img_labels.append(lbl)
+
+        # Update scrollable area
+        frame.update_idletasks()
+        canvas.config(scrollregion=canvas.bbox("all"))
+
+        tk.Label(img_window, text=f"Report saved to: {report_path}", fg="green").pack(pady=5)
+
+     except Exception as e:
+        messagebox.showerror("Error", f"Failed to generate report:\n{e}")
+
 
 # ---------- Main ----------
 if __name__ == "__main__":

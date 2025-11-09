@@ -64,3 +64,5 @@ if (Test-Path $zipPath) { Remove-Item $zipPath -Force }
 Compress-Archive -Path (Join-Path $dist '*') -DestinationPath $zipPath
 
 Write-Host "Submission package created: $zipPath" -ForegroundColor Green
+
+
