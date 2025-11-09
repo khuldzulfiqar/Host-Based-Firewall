@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
 Startup script for the Enhanced Host-Based Firewall
-Handles initialization, authentication, and role-based access control
+Handles initialization and error checking
 """
 
 import sys
 import os
 import traceback
 
+<<<<<<< HEAD
 # 🔐 Import authentication system
 from auth_system import authenticate_user, ensure_default_users, change_password
 
@@ -45,6 +46,8 @@ def login():
             # retry login
             print("Try again.\n")
 
+=======
+>>>>>>> 752be40f2a8e6162abbd420c5915312dbe69f252
 def check_requirements():
     """Check if all required modules are available"""
     try:
@@ -70,7 +73,6 @@ def check_requirements():
     
     return True
 
-
 def check_permissions():
     """Check if running with appropriate permissions"""
     try:
@@ -85,40 +87,38 @@ def check_permissions():
         print("⚠️  Could not check administrator status")
         return True
 
-
 def main():
     """Main startup function"""
     print("=== Enhanced Host-Based Firewall Startup ===")
-
-    # 🧠 Step 1: User Authentication
-    role = login()
-    print(f"Logged in as: {role.upper()}")
-
-    # 🧩 Step 2: System checks
-    print("\nChecking system requirements...\n")
+    print("Checking system requirements...\n")
+    
+    # Check requirements
     if not check_requirements():
         print("\n❌ Missing requirements. Please install missing dependencies.")
         input("Press Enter to exit...")
         return
-
-    # 🛡️ Step 3: Permissions check
+    
+    # Check permissions
     check_permissions()
-
+    
     print("\nStarting Enhanced Host-Based Firewall...")
-
+    
     try:
+        # Import and run the main application
         from firewall import EnhancedFirewallGUI
         import tkinter as tk
         from rule_engine import RuleEngine, RuleAction  # <-- import here
 
-        # Initialize the rule engine with a logger
+        # 1️⃣ Initialize the rule engine with logger
         def logger(msg):
             print(msg)
-
+        
         engine = RuleEngine(log_callback=logger)
-        engine.set_default_action(RuleAction.DENY)
 
-        # Create main GUI window
+        # 2️⃣ Set default action to DENY for security
+        engine.set_default_action(RuleAction.DENY)
+        
+        # Create main window
         root = tk.Tk()
         gui = EnhancedFirewallGUI(root, role)
 
@@ -144,21 +144,21 @@ def main():
         print("✓ Firewall GUI initialized successfully")
         print("✓ Application is ready to use")
         print("\nNote: Run as Administrator for full packet capture functionality")
-
-        # Start GUI loop
+        
+        # Start the GUI main loop
         root.mainloop()
-
+        
     except ImportError as e:
         print(f"❌ Import error: {e}")
         print("Please ensure all modules are in the same directory")
         input("Press Enter to exit...")
-
+        
     except Exception as e:
         print(f"❌ Unexpected error: {e}")
         print("\nFull error details:")
         traceback.print_exc()
         input("Press Enter to exit...")
 
-
 if __name__ == "__main__":
     main()
+    
