@@ -1,6 +1,6 @@
 {
   "firewall_enabled": true,
-  "default_action": "DENY",
+  "default_action": "ALLOW",
   "log_level": "INFO",
   "max_connections": 1000,
   "connection_timeout": 300,
